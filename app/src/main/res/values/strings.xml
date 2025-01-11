@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyTetris</string>
+    <string name="rotation">rotation</string>
+    <string name="left">left</string>
+    <string name="right">right</string>
+    <string name="down">down</string>
+</resources>

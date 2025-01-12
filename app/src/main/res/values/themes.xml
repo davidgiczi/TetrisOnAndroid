@@ -3,6 +3,11 @@
     <style name="Base.Theme.TetrisAndroid" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="android:navigationBarColor">@color/blue</item>
     </style>
 
     <style name="Theme.TetrisAndroid" parent="Base.Theme.TetrisAndroid" />

@@ -1,14 +1,21 @@
 <resources>
     <string name="app_name">MyTetris</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
+    <string name="start">Start Game</string>
     <string name="previous">Previous</string>
     <string name="rotation_process">rotation</string>
     <string name="left_step">left</string>
     <string name="right_step">right</string>
     <string name="down_step">down</string>
+    <string name="action_exit">Kilépés</string>
+    <string name="action_next">Következő oldal</string>
+    <string name="gamer_result">Helyezés</string>
+    <string name="gamer_name">Név</string>
+    <string name="gamer_credit">Kredit</string>
+    <string name="game_date">Dátum</string>
+    <string name="game_length">Játékidő</string>
+    <string name="game_score">Pontszám</string>
 
 </resources>

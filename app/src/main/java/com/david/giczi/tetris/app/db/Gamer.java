@@ -4,8 +4,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 @Entity(tableName = "gamers")
-public class Gamer {
+public class Gamer implements Comparable<Gamer>{
 
     @PrimaryKey(autoGenerate = true)
     public int id;
@@ -33,8 +36,12 @@ public class Gamer {
         return name;
     }
 
-    public long getDate() {
-        return date;
+    public String getDate() {
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date);
+    }
+
+    public int getCredit(){
+        return score / duration;
     }
 
     public int getDuration() {
@@ -54,5 +61,10 @@ public class Gamer {
                 ", duration=" + duration +
                 ", score=" + score +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Gamer o) {
+        return Integer.compare(this.score / this.duration, o.score / o.duration);
     }
 }

@@ -10,12 +10,13 @@
     <string name="right_step">right</string>
     <string name="down_step">down</string>
     <string name="action_exit">Kilépés</string>
-    <string name="action_next">Következő oldal</string>
-    <string name="gamer_result">Helyezés</string>
+    <string name="action_start">Játék indítás</string>
+    <string name="gamer_result">Hely</string>
     <string name="gamer_name">Név</string>
     <string name="gamer_credit">Kredit</string>
     <string name="game_date">Dátum</string>
     <string name="game_length">Játékidő</string>
+    <string name="game_min">[perc]</string>
     <string name="game_score">Pontszám</string>
 
 </resources>

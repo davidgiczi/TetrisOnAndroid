@@ -1,6 +1,5 @@
 package com.david.giczi.tetris.app.fragments;
 
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import com.david.giczi.tetris.app.MainActivity;
+import com.david.giczi.tetris.app.R;
 import com.david.giczi.tetris.app.databinding.FragmentGameBinding;
 
 public class GameFragment extends Fragment {
@@ -40,19 +41,25 @@ public class GameFragment extends Fragment {
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            continueGame();
+            continueGameDialog();
         }
     }
 
-    private void continueGame() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+    private void continueGameDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
-        builder.setTitle("Játék folytatása");
-        builder.setMessage("Szeretnéd folytatni a játékot?");
+        builder.setTitle(R.string.continue_game_title);
+        builder.setMessage(R.string.continue_game_question);
 
-        builder.setPositiveButton("Igen", (dialog, which) -> {dialog.dismiss();});
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> dialog.dismiss());
 
-        builder.setNegativeButton("Nem", (dialog, which) -> dialog.dismiss());
+        builder.setNegativeButton(R.string.no, (dialog, which) ->{
+                    NavController navController =
+                            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+                    navController.navigate(R.id.action_GameFragment_to_HomeFragment);
+                    dialog.dismiss();
+                });
+
 
         AlertDialog alert = builder.create();
         alert.show();

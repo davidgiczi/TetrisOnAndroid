@@ -65,6 +65,7 @@ public class Gamer implements Comparable<Gamer>{
 
     @Override
     public int compareTo(Gamer o) {
-        return Integer.compare(this.score / this.duration, o.score / o.duration);
+        return Integer.compare(o.getScore() / o.getDuration(), this.getScore() / this.getDuration());
+
     }
 }

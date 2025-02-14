@@ -9,4 +9,7 @@
     <color name="yellow">#f4d03f</color>
     <color name="purple">#8e44ad</color>
     <color name="orange">#e67e22</color>
+    <color name="default_background_color">#FAF9FD</color>
+    <color name="steel_gray">#708090</color>
+    <color name="light_gray">#BEBEBE</color>
 </resources>

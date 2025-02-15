@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -110,7 +111,7 @@ public class HomeFragment extends Fragment {
                 resultData.setText(resultValue);
                 resultData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 TextView gamerNameData = new TextView(getContext());
-                gamerNameData.setOnClickListener(n -> deleteGamerDialog());
+                gamerNameData.setOnClickListener(n -> deleteGamerDialog(gamer.getName()));
                 gamerNameData.setGravity(Gravity.CENTER_HORIZONTAL);
                 gamerNameData.setText(gamer.getName());
                 gamerNameData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -228,7 +229,7 @@ public class HomeFragment extends Fragment {
             resultData.setText(resultValue);
             resultData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             TextView gamerNameData = new TextView(getContext());
-            gamerNameData.setOnClickListener(n -> deleteGamerDialog());
+            gamerNameData.setOnClickListener(n -> deleteGamerDialog(gamer.getName()));
             gamerNameData.setGravity(Gravity.CENTER_HORIZONTAL);
             gamerNameData.setText(gamer.getName());
             gamerNameData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -298,10 +299,10 @@ public class HomeFragment extends Fragment {
         binding.startPage.addView(gamersData);
     }
 
-    private void deleteGamerDialog() {
+    private void deleteGamerDialog(String gamerName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
-        builder.setTitle(R.string.delete_gamer_title);
+        builder.setTitle("\"" + gamerName + "\" törlése");
         builder.setMessage(R.string.delete_gamer_question);
 
         builder.setPositiveButton(R.string.yes, (dialog, which) -> dialog.dismiss());

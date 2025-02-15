@@ -18,8 +18,7 @@
     <string name="no">Nem</string>
     <string name="close_app_title">Alkalmazás bezárása</string>
     <string name="close_app_question">Biztos, hogy ki akarsz lépni az alkalmazásból?</string>
-    <string name="delete_gamer_title">Játékos törlése</string>
-    <string name="delete_gamer_question">Biztos, hogy törlöd a játékos adatait?</string>
+    <string name="delete_gamer_question">Biztos, hogy törlöd a kiválasztott játékos adatait?</string>
     <string name="continue_game_title">Játék folytatása</string>
     <string name="continue_game_question">Szeretnéd folytatni a játékot?</string>
     <string name="set_gamer_name_option">Játékos neve</string>

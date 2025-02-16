@@ -24,8 +24,8 @@
     <string name="set_gamer_name_option">Játékos neve</string>
     <string name="start_game_option">Start</string>
     <string-array name="spinner_items">
-        <item>Tempó 1</item>
-        <item>Tempó 2</item>
-        <item>Tempó 3</item>
+        <item>tempó 1</item>
+        <item>tempó 2</item>
+        <item>tempó 3</item>
     </string-array>
 </resources>

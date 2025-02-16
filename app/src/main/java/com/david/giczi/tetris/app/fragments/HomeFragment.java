@@ -43,6 +43,10 @@ public class HomeFragment extends Fragment {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         MainActivity.PAGE_NUMBER_VALUE = 0;
+        if( ((MainActivity) requireActivity()).menu != null ){
+            ((MainActivity) requireActivity()).menu.findItem(R.id.game_start).setEnabled(true);
+            ((TextView)  requireActivity().findViewById(R.id.game_info_title)).setText("");
+        }
         setGamersDataForPortraitOrientation();
         return binding.getRoot();
 

@@ -1,15 +1,6 @@
 package com.david.giczi.tetris.app;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import com.david.giczi.tetris.app.databinding.ActivityMainBinding;
-
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +10,18 @@ import android.widget.ArrayAdapter;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.david.giczi.tetris.app.databinding.ActivityMainBinding;
+import com.david.giczi.tetris.app.db.Gamer;
+import com.david.giczi.tetris.app.fragments.HomeFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -64,14 +67,11 @@ public class MainActivity extends AppCompatActivity {
             exitAppDialog();
             return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void gotoNextFragment(){
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        if( PAGE_NUMBER_VALUE == 0 ){
-            navController.navigate(R.id.action_HomeFragment_to_GameFragment);
+        else if( id == android.R.id.home ){
+            exitGameDialog();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void exitAppDialog() {
@@ -81,9 +81,55 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(R.string.close_app_question);
 
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-            dialog.dismiss();
             System.exit(0);
+            dialog.dismiss();
         });
+
+        builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void exitGameDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.close_game_title);
+        builder.setMessage(R.string.close_game_question);
+
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+            navController.navigate(R.id.action_GameFragment_to_HomeFragment);
+            dialog.dismiss();
+        });
+
+        builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void playerNameDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.info_title);
+        builder.setMessage(R.string.player_name_option);
+
+        builder.setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss());
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void createPlayerDialog(PopupWindow startGameWindow, String player, String info) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String title = "\"" + player + "\" regisztrálása";
+        builder.setTitle(title);
+        builder.setMessage(R.string.create_new_player_question);
+
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            startGameProcess(startGameWindow, info);
+            dialog.dismiss();});
 
         builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());
 
@@ -114,16 +160,24 @@ public class MainActivity extends AppCompatActivity {
         container.findViewById(R.id.start_button).setOnClickListener(s ->{
             String player = ((TextView) container.findViewById(R.id.gamer_name_input_field)).getText().toString().trim();
             if( player.isEmpty() ){
-                startGameWindow.dismiss();
+                playerNameDialog();
                 return;
             }
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-            navController.navigate(R.id.action_HomeFragment_to_GameFragment);
-            menu.findItem(R.id.game_start).setEnabled(false);
             String title =  player + ", " + tempoSpinner.getSelectedItem().toString();
-            ((TextView)  findViewById(R.id.game_info_title)).setText(title);
-            startGameWindow.dismiss();
+            if( !HomeFragment.GAMERS_DATA.contains(new Gamer(player, 0,0, 0)) ){
+                createPlayerDialog(startGameWindow, player, title);
+                return;
+            }
+            startGameProcess(startGameWindow, title);
         });
+    }
+
+    private void startGameProcess(PopupWindow startGameWindow, String title){
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController.navigate(R.id.action_HomeFragment_to_GameFragment);
+        menu.findItem(R.id.game_start).setEnabled(false);
+        ((TextView)  findViewById(R.id.game_info_title)).setText(title);
+        startGameWindow.dismiss();
     }
 
 }

@@ -1,11 +1,13 @@
 package com.david.giczi.tetris.app.db;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Objects;
 
 @Entity(tableName = "gamers")
 public class Gamer implements Comparable<Gamer>{
@@ -52,6 +54,21 @@ public class Gamer implements Comparable<Gamer>{
         return score;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gamer gamer = (Gamer) o;
+        return Objects.equals(name, gamer.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @NonNull
     @Override
     public String toString() {
         return "Gamer{" +

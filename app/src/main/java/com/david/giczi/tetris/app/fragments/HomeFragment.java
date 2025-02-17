@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -22,13 +21,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private LinearLayout.LayoutParams PARAMS;
-    private final List<Gamer> GAMERS_DATA = Arrays.asList(new Gamer("Dave",1000, 30, 1978071200),
+    public static final List<Gamer> GAMERS_DATA = Arrays.asList(new Gamer("Dave",1000, 30, 1978071200),
                                                     new Gamer("Anna", 18000000, 40, 1977032700),
                                                     new Gamer("LocalHero", 800, 5, 2010011200),
                                                     new Gamer("GicziD_78", 3500, 25, 2000010100),

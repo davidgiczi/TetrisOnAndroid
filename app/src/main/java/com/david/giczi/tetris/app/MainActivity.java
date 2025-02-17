@@ -1,5 +1,6 @@
 package com.david.giczi.tetris.app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,13 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.david.giczi.tetris.app.databinding.ActivityMainBinding;
 import com.david.giczi.tetris.app.db.Gamer;
-import com.david.giczi.tetris.app.fragments.HomeFragment;
+import com.david.giczi.tetris.app.db.GamerDao;
+import com.david.giczi.tetris.app.db.GamerDatabase;
+import com.david.giczi.tetris.app.db.GamerService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GamerService.getAllGamers(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
@@ -128,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(R.string.create_new_player_question);
 
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            GamerService.insertGamer(new Gamer(player, 0, 0, 0));
             startGameProcess(startGameWindow, info);
             dialog.dismiss();});
 
@@ -144,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void popupStartGameDialog(){
+    public void popupStartGameDialog(){
         ViewGroup container = (ViewGroup) getLayoutInflater().inflate(R.layout.fragment_start_game, null);
         PopupWindow startGameWindow = new PopupWindow(container, 1000, 700, true);
         startGameWindow.showAtLocation(binding.getRoot(), Gravity.CENTER, 0, - 400);
@@ -164,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             String title =  player + ", " + tempoSpinner.getSelectedItem().toString();
-            if( !HomeFragment.GAMERS_DATA.contains(new Gamer(player, 0,0, 0)) ){
+            if( !GamerService.GAMERS.contains(new Gamer(player, 0,0, 0)) ){
                 createPlayerDialog(startGameWindow, player, title);
                 return;
             }

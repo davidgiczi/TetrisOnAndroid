@@ -17,20 +17,17 @@ import com.david.giczi.tetris.app.MainActivity;
 import com.david.giczi.tetris.app.R;
 import com.david.giczi.tetris.app.databinding.FragmentHomeBinding;
 import com.david.giczi.tetris.app.db.Gamer;
-import java.util.Arrays;
+import com.david.giczi.tetris.app.db.GamerService;
+
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
+
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private LinearLayout.LayoutParams PARAMS;
-    public static final List<Gamer> GAMERS_DATA = Arrays.asList(new Gamer("Dave",1000, 30, 1978071200),
-                                                    new Gamer("Anna", 18000000, 40, 1977032700),
-                                                    new Gamer("LocalHero", 800, 5, 2010011200),
-                                                    new Gamer("GicziD_78", 3500, 25, 2000010100),
-                                                    new Gamer("LOCALHERO", 800, 10, 2010011200));
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -45,14 +42,13 @@ public class HomeFragment extends Fragment {
             ((MainActivity) requireActivity()).menu.findItem(R.id.game_start).setEnabled(true);
             ((TextView)  requireActivity().findViewById(R.id.game_info_title)).setText("");
         }
+        GamerService.getAllGamers(getContext());
         setGamersDataForPortraitOrientation();
         return binding.getRoot();
-
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     @Override
@@ -105,11 +101,11 @@ public class HomeFragment extends Fragment {
             dateTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
             dateTitle.setPadding(80, 0, 0, 0);
             dateCol.addView(dateTitle);
-            Collections.sort(GAMERS_DATA);
-            for (Gamer gamer: GAMERS_DATA) {
+            Collections.sort(GamerService.GAMERS);
+            for (Gamer gamer: GamerService.GAMERS) {
                 TextView resultData = new TextView(getContext());
                 resultData.setGravity(Gravity.CENTER_HORIZONTAL);
-                String resultValue = (GAMERS_DATA.indexOf(gamer) + 1) + ".";
+                String resultValue = (GamerService.GAMERS.indexOf(gamer) + 1) + ".";
                 resultData.setText(resultValue);
                 resultData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 TextView gamerNameData = new TextView(getContext());
@@ -125,7 +121,7 @@ public class HomeFragment extends Fragment {
                 dateData.setGravity(Gravity.CENTER_HORIZONTAL);
                 dateData.setText(gamer.getDate());
                 dateData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-                switch (GAMERS_DATA.indexOf(gamer)) {
+                switch (GamerService.GAMERS.indexOf(gamer)) {
                     case 0:
                         resultData.setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow));
                         gamerNameData.setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow));
@@ -223,11 +219,11 @@ public class HomeFragment extends Fragment {
         durationTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         durationTitle.setPadding(80, 0, 0, 0);
         durationCol.addView(durationTitle);
-        Collections.sort(GAMERS_DATA);
-        for (Gamer gamer : GAMERS_DATA) {
+        Collections.sort(GamerService.GAMERS);
+        for (Gamer gamer : GamerService.GAMERS) {
             TextView resultData = new TextView(getContext());
             resultData.setGravity(Gravity.CENTER_HORIZONTAL);
-            String resultValue = (GAMERS_DATA.indexOf(gamer) + 1) + ".";
+            String resultValue = (GamerService.GAMERS.indexOf(gamer) + 1) + ".";
             resultData.setText(resultValue);
             resultData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             TextView gamerNameData = new TextView(getContext());
@@ -251,7 +247,7 @@ public class HomeFragment extends Fragment {
             durationData.setGravity(Gravity.CENTER_HORIZONTAL);
             durationData.setText(String.format(Locale.getDefault(), "%d", gamer.getDuration()));
             durationData.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            switch (GAMERS_DATA.indexOf(gamer)) {
+            switch (GamerService.GAMERS.indexOf(gamer)) {
                 case 0:
                     resultData.setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow));
                     gamerNameData.setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow));
@@ -307,7 +303,14 @@ public class HomeFragment extends Fragment {
         builder.setTitle("\"" + gamerName + "\" törlése");
         builder.setMessage(R.string.delete_gamer_question);
 
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> dialog.dismiss());
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> {
+            GamerService.deleteGamer(gamerName);
+            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                setGamersDataForLandscapeOrientation();
+            } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                setGamersDataForPortraitOrientation();
+            }
+            dialog.dismiss();});
 
         builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());
 

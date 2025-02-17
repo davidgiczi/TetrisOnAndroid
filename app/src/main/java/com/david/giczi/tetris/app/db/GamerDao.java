@@ -17,5 +17,7 @@ public interface GamerDao {
     void deleteGamerById(int gamerId);
     @Query("SELECT * FROM gamers WHERE name = :gamerName")
     Gamer getGamerByName(String gamerName);
+    @Query("DELETE FROM gamers")
+     void deleteAllGamers();
 
 }

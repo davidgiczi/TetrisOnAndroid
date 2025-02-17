@@ -39,10 +39,16 @@ public class Gamer implements Comparable<Gamer>{
     }
 
     public String getDate() {
+        if( date == 0 ){
+            return "-";
+        }
         return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date);
     }
 
     public int getCredit(){
+        if( duration ==  0 ){
+            return 0;
+        }
         return score / duration;
     }
 
@@ -82,7 +88,9 @@ public class Gamer implements Comparable<Gamer>{
 
     @Override
     public int compareTo(Gamer o) {
+        if( this.getDuration() == 0 || o.getDuration() == 0 ){
+            return 0;
+        }
         return Integer.compare(o.getScore() / o.getDuration(), this.getScore() / this.getDuration());
-
     }
 }

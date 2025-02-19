@@ -1,6 +1,5 @@
 package com.david.giczi.tetris.app;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,13 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.david.giczi.tetris.app.databinding.ActivityMainBinding;
 import com.david.giczi.tetris.app.db.Gamer;
-import com.david.giczi.tetris.app.db.GamerDao;
-import com.david.giczi.tetris.app.db.GamerDatabase;
 import com.david.giczi.tetris.app.db.GamerService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -42,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GamerService.getAllGamers(this);
+        new GamerService(this);
+        GamerService.getAllGamers();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);

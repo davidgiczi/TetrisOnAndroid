@@ -6,7 +6,7 @@
 
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/blue</item>
-        <item name="android:fontFamily">@font/robotomono_bold</item>
+        <item name="android:fontFamily">@font/roboto_mono_bold</item>
     </style>
 
     <style name="Theme.Tetris" parent="Base.Theme.Tetris" />

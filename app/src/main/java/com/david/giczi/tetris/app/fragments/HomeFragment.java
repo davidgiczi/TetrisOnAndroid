@@ -2,6 +2,7 @@ package com.david.giczi.tetris.app.fragments;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,9 +19,9 @@ import com.david.giczi.tetris.app.R;
 import com.david.giczi.tetris.app.databinding.FragmentHomeBinding;
 import com.david.giczi.tetris.app.db.Gamer;
 import com.david.giczi.tetris.app.db.GamerService;
-
 import java.util.Collections;
 import java.util.Locale;
+
 
 
 public class HomeFragment extends Fragment {
@@ -42,8 +43,8 @@ public class HomeFragment extends Fragment {
             ((MainActivity) requireActivity()).menu.findItem(R.id.game_start).setEnabled(true);
             ((TextView)  requireActivity().findViewById(R.id.game_info_title)).setText("");
         }
-        GamerService.getAllGamers(getContext());
-        setGamersDataForPortraitOrientation();
+        GamerService.getAllGamers();
+        setGamerDataForOrientation();
         return binding.getRoot();
     }
     @Override
@@ -59,6 +60,20 @@ public class HomeFragment extends Fragment {
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             setGamersDataForPortraitOrientation();
         }
+    }
+
+    private void setGamerDataForOrientation(){
+            Handler handler = new Handler();
+            handler.postDelayed(() ->{
+                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    setGamersDataForLandscapeOrientation();
+                } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    setGamersDataForPortraitOrientation();
+                }
+                if( GamerService.GAMERS.isEmpty() ) {
+                    ((MainActivity) requireActivity()).popupStartGameDialog();
+                }
+            },1000);
     }
 
     private void setGamersDataForPortraitOrientation(){
@@ -305,11 +320,7 @@ public class HomeFragment extends Fragment {
 
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
             GamerService.deleteGamer(gamerName);
-            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                setGamersDataForLandscapeOrientation();
-            } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                setGamersDataForPortraitOrientation();
-            }
+            setGamerDataForOrientation();
             dialog.dismiss();});
 
         builder.setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss());

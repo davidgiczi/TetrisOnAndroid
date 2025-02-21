@@ -22,7 +22,7 @@ public class ShapeFactory {
             case T_LETTER:
                 return new T_Letter();
             default:
-                throw new NoSuchElementException("'" + shapeType.toString() + "' Shape does not exist.");
+                throw new NoSuchElementException("'" + shapeType + "' Shape does not exist.");
         }
     }
 

@@ -1,11 +1,13 @@
 package com.david.giczi.tetris.app.logic;
 
+import java.util.List;
+
 public interface Shape {
 
     void create();
-    void stepLeft();
-    void stepRight();
-    void pullDown();
-    void rotate();
+    List<Shape> stepLeft();
+    List<Shape> stepRight();
+    List<Shape> stepDown();
+    List<Shape> rotate();
 
 }

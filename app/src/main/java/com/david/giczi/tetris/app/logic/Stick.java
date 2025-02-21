@@ -1,28 +1,34 @@
 package com.david.giczi.tetris.app.logic;
 
+import java.util.List;
+
 public class Stick implements Shape{
+
+    public List<Integer> stick;
+    public int colorCode;
+
     @Override
     public void create() {
 
     }
 
     @Override
-    public void stepLeft() {
-
+    public List<Shape> stepLeft() {
+        return null;
     }
 
     @Override
-    public void stepRight() {
-
+    public List<Shape> stepRight() {
+        return null;
     }
 
     @Override
-    public void pullDown() {
-
+    public List<Shape> stepDown() {
+        return null;
     }
 
     @Override
-    public void rotate() {
-
+    public List<Shape> rotate() {
+        return null;
     }
 }

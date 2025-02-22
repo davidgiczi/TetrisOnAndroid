@@ -5,9 +5,9 @@ import java.util.List;
 public interface Shape {
 
     void create();
-    List<Shape> stepLeft();
-    List<Shape> stepRight();
-    List<Shape> stepDown();
-    List<Shape> rotate();
+    List<Integer> stepLeft();
+    List<Integer> stepRight();
+    List<Integer> stepDown();
+    List<Integer> rotate();
 
 }

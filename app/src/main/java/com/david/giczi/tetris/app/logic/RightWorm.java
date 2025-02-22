@@ -14,22 +14,24 @@ class RightWorm implements Shape {
     }
 
     @Override
-    public List<Shape> stepLeft() {
+    public List<Integer> stepLeft() {
         return null;
     }
 
     @Override
-    public List<Shape> stepRight() {
+    public List<Integer> stepRight() {
         return null;
     }
 
     @Override
-    public List<Shape> stepDown() {
+    public List<Integer> stepDown() {
         return null;
     }
 
     @Override
-    public List<Shape> rotate() {
+    public List<Integer> rotate() {
         return null;
     }
+
+
 }

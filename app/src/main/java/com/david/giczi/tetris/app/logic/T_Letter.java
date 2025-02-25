@@ -4,8 +4,24 @@ import java.util.List;
 
 class T_Letter implements Shape {
 
-    public List<Integer> letter_T;
-    public int colorCode;
+    private List<Integer> letter_T;
+    private int colorCode;
+    private int location;
+
+    @Override
+    public int getLocation() {
+        return location;
+    }
+
+    @Override
+    public int getColorCode() {
+        return colorCode;
+    }
+
+    @Override
+    public List<Integer> getShape() {
+        return letter_T;
+    }
 
     @Override
     public void create() {

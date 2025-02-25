@@ -4,8 +4,24 @@ import java.util.List;
 
 public class Stick implements Shape{
 
-    public List<Integer> stick;
-    public int colorCode;
+    private List<Integer> stick;
+    private int colorCode;
+    private int location;
+
+    @Override
+    public int getLocation() {
+        return location;
+    }
+
+    @Override
+    public int getColorCode() {
+        return colorCode;
+    }
+
+    @Override
+    public List<Integer> getShape() {
+        return stick;
+    }
 
     @Override
     public void create() {

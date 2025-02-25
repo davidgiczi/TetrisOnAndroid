@@ -4,9 +4,26 @@ import java.util.List;
 
 class RightWorm implements Shape {
 
-    public List<Integer> rightWorm;
-    public int colorCode;
+    private List<Integer> rightWorm;
+    private int colorCode;
+    private int location;
 
+
+
+    @Override
+    public int getLocation() {
+        return location;
+    }
+
+    @Override
+    public int getColorCode() {
+        return colorCode;
+    }
+
+    @Override
+    public List<Integer> getShape() {
+        return rightWorm;
+    }
 
     @Override
     public void create() {

@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(R.string.create_new_player_question);
 
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-            GamerService.insertGamer(new Gamer(player, 0, 0, 0));
+            GamerService.insertGamer(new Gamer(player));
             startGameProcess(startGameWindow, info);
             dialog.dismiss();});
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             String title =  player + ", " + tempoSpinner.getSelectedItem().toString();
-            if( !GamerService.GAMERS.contains(new Gamer(player, 0,0, 0)) ){
+            if( !GamerService.GAMERS.contains(new Gamer(player)) ){
                 createPlayerDialog(startGameWindow, player, title);
                 return;
             }

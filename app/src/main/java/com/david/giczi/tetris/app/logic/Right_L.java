@@ -4,8 +4,24 @@ import java.util.List;
 
 class Right_L implements Shape {
 
-    public List<Integer> right_L;
-    public int colorCode;
+    private List<Integer> right_L;
+    private int colorCode;
+    private int location;
+
+    @Override
+    public int getLocation() {
+        return location;
+    }
+
+    @Override
+    public int getColorCode() {
+        return colorCode;
+    }
+
+    @Override
+    public List<Integer> getShape() {
+        return right_L;
+    }
 
     @Override
     public void create() {

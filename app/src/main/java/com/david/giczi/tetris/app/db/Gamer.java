@@ -23,11 +23,8 @@ public class Gamer implements Comparable<Gamer>{
     @ColumnInfo(name = "score")
     public int score;
 
-    public Gamer(String name, int score, int duration, long date) {
+    public Gamer(String name) {
         this.name = name;
-        this.score = score;
-        this.duration = duration;
-        this.date = date;
     }
 
     public int getId() {
@@ -42,7 +39,7 @@ public class Gamer implements Comparable<Gamer>{
         if( date == 0 ){
             return "-";
         }
-        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date);
+        return new SimpleDateFormat("yy-MM-dd", Locale.getDefault()).format(date);
     }
 
     public int getCredit(){
@@ -60,6 +57,17 @@ public class Gamer implements Comparable<Gamer>{
         return score;
     }
 
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/dark_gray"
     android:fillViewport="true"
     tools:context=".fragments.GameFragment">
 
@@ -1927,7 +1927,7 @@
                 android:id="@+id/next_00"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/gray" />
+                android:background="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/next_01"
@@ -1945,7 +1945,7 @@
                 android:id="@+id/next_03"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/gray" />
+                android:background="@color/dark_gray" />
         </LinearLayout>
 
         <LinearLayout
@@ -1963,7 +1963,7 @@
                 android:id="@+id/next_10"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/gray" />
+                android:background="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/next_11"
@@ -1981,7 +1981,7 @@
                 android:id="@+id/next_13"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@color/gray" />
+                android:background="@color/dark_gray" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

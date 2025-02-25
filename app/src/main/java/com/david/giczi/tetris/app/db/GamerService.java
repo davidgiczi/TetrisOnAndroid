@@ -21,7 +21,7 @@ public class GamerService {
 
     public static void insertGamer(Gamer gamer){
         GamerDatabase.databaseExecutor.execute(() -> {
-            gamerDao.insert(gamer);
+            gamerDao.insertGamer(gamer);
             GAMERS = gamerDao.getAllGamers();
         });
     }
@@ -34,3 +34,4 @@ public class GamerService {
         });
     }
 }
+

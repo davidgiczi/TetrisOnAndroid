@@ -197,7 +197,7 @@ public class HomeFragment extends Fragment {
         gamerNameTitle.setText(R.string.gamer_name);
         gamerNameTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.green));
         gamerNameTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-        gamerNameTitle.setPadding(100, 0, 0, 0);
+        gamerNameTitle.setPadding(80, 0, 0, 0);
         nameCol.addView(gamerNameTitle);
         LinearLayout creditCol = new LinearLayout(getContext());
         creditCol.setOrientation(LinearLayout.VERTICAL);
@@ -206,7 +206,7 @@ public class HomeFragment extends Fragment {
         creditTitle.setText(R.string.gamer_credit);
         creditTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.green));
         creditTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-        creditTitle.setPadding(40, 0, 0, 0);
+        creditTitle.setPadding(60, 0, 0, 0);
         creditCol.addView(creditTitle);
         LinearLayout dateCol = new LinearLayout(getContext());
         dateCol.setOrientation(LinearLayout.VERTICAL);
@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment {
         dateTitle.setText(R.string.game_date);
         dateTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.green));
         dateTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-        dateTitle.setPadding(100, 0, 0, 0);
+        dateTitle.setPadding(80, 0, 0, 0);
         dateCol.addView(dateTitle);
         LinearLayout scoreCol = new LinearLayout(getContext());
         scoreCol.setOrientation(LinearLayout.VERTICAL);
@@ -224,7 +224,7 @@ public class HomeFragment extends Fragment {
         scoreTitle.setText(R.string.game_score);
         scoreTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.green));
         scoreTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-        scoreTitle.setPadding(40, 0, 0, 0);
+        scoreTitle.setPadding(60, 0, 0, 0);
         scoreCol.addView(scoreTitle);
         LinearLayout durationCol = new LinearLayout(getContext());
         durationCol.setOrientation(LinearLayout.VERTICAL);

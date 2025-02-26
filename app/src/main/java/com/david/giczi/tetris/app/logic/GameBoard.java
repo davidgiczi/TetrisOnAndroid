@@ -13,7 +13,7 @@ public class GameBoard {
         initBoard();
     }
 
-    private void initBoard(){
+    public void initBoard(){
         TETRIS_BOARD = new ArrayList<>();
         for (int i = 0; i < BOARD_ROW * BOARD_COL; i++) {
             TETRIS_BOARD.add(Boolean.FALSE);
@@ -24,25 +24,6 @@ public class GameBoard {
         for (Integer shapeCell : shape.getShape()) {
             TETRIS_BOARD.set(shapeCell, Boolean.TRUE);
         }
-    }
-
-    public static boolean isValidMovement(Shape shape){
-
-        try{
-            for (Integer shapeCell : shape.getShape()) {
-                TETRIS_BOARD.get(shapeCell);
-            }
-        }catch (IndexOutOfBoundsException e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        for (Integer shapeCell : shape.getShape()) {
-            if( TETRIS_BOARD.get(shapeCell) ){
-                return false;
-            }
-        }
-        return true;
     }
 
     public void displayTetrisBoard(){

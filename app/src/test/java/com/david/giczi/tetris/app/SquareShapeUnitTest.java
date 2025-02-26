@@ -10,7 +10,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SquareShapeUnitTest {
 
@@ -23,6 +25,7 @@ public class SquareShapeUnitTest {
     @Before
     public void createShape(){
         SQUARE = ShapeFactory.getShape(ShapeType.SQUARE);
+        BOARD.initBoard();
     }
 
     @Test
@@ -37,6 +40,7 @@ public class SquareShapeUnitTest {
     @Test
     public void testCreateSquareShape() {
         BOARD.addShape(SQUARE);
+        System.out.println();
         System.out.println("Shape's location: " + SQUARE.getLocation());
         System.out.println();
         BOARD.displayTetrisBoard();
@@ -71,7 +75,103 @@ public class SquareShapeUnitTest {
     }
 
     @Test
-    public void testIsValidMovementMethod(){
-
+    public void testIsValidStepLeft(){
+        Shape square = ShapeFactory.getShape(ShapeType.SQUARE);
+        square.getShape().set(0, 0);
+        assertFalse(square.isValidStepLeft());
+        int shapeCellValue = (int) (Math.random() * 9 + 1);
+        square.getShape().set(0, shapeCellValue);
+        assertTrue(square.isValidStepLeft());
     }
+
+    @Test
+    public void testStepLeft(){
+        List<Integer> temp = new ArrayList<>(SQUARE.getShape());
+        System.out.println("Shape's location: " + SQUARE.getLocation());
+        if( SQUARE.isValidStepLeft() ) {
+            List<Integer> deletedShapeCell = SQUARE.stepLeft();
+            temp.replaceAll(cellValue -> cellValue - 1);
+            assertEquals(SQUARE.getShape(), temp);
+            System.out.println("Step LEFT, deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(SQUARE);
+            BOARD.displayTetrisBoard();
+        }
+        else {
+            List<Integer> deletedShapeCell = SQUARE.stepLeft();
+            assertEquals(SQUARE.getShape(), temp);
+            System.out.println("NO step LEFT, Deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(SQUARE);
+            BOARD.displayTetrisBoard();
+        }
+    }
+
+    @Test
+    public void testIsValidStepRight(){
+        Shape square = ShapeFactory.getShape(ShapeType.SQUARE);
+        square.getShape().set(1, 9);
+        assertFalse(square.isValidStepRight());
+        int shapeCellValue = (int) (Math.random() * 9);
+        square.getShape().set(1, shapeCellValue);
+        assertTrue(square.isValidStepRight());
+    }
+
+
+    @Test
+    public void testStepRight(){
+        List<Integer> temp = new ArrayList<>(SQUARE.getShape());
+        System.out.println("Shape's location: " + SQUARE.getLocation());
+        if( SQUARE.isValidStepRight() ) {
+            List<Integer> deletedShapeCell = SQUARE.stepRight();
+            temp.replaceAll(cellValue -> cellValue + 1);
+            assertEquals(SQUARE.getShape(), temp);
+            System.out.println("Step RIGHT, deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(SQUARE);
+            BOARD.displayTetrisBoard();
+        }
+        else {
+            List<Integer> deletedShapeCell = SQUARE.stepRight();
+            assertEquals(SQUARE.getShape(), temp);
+            System.out.println("NO step RIGHT, deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(SQUARE);
+            BOARD.displayTetrisBoard();
+        }
+    }
+
+    @Test
+    public void testIsValidStepDown(){
+        Shape square = ShapeFactory.getShape(ShapeType.SQUARE);
+        square.getShape().set(2, 198);
+        assertFalse(square.isValidStepDown());
+        int shapeCellValue = (int) (Math.random() *  179 + 10);
+        square.getShape().set(2, shapeCellValue);
+        assertTrue(square.isValidStepDown());
+    }
+
+    @Test
+    public void testStepDown(){
+        List<Integer> temp = new ArrayList<>(SQUARE.getShape());
+        System.out.println("Shape's location: " + SQUARE.getLocation());
+        if( SQUARE.isValidStepDown() ) {
+            List<Integer> deletedShapeCell = SQUARE.stepDown();
+            temp.replaceAll(cellValue -> cellValue + GameBoard.BOARD_COL);
+            assertEquals(SQUARE.getShape(), temp);
+            System.out.println("Step DOWN, deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(SQUARE);
+            BOARD.displayTetrisBoard();
+        }
+        else {
+            List<Integer> deletedShapeCell = SQUARE.stepDown();
+            assertEquals(SQUARE.getShape(), temp);
+            System.out.println("NO step DOWN, deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(SQUARE);
+            BOARD.displayTetrisBoard();
+        }
+    }
+
 }

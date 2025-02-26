@@ -34,8 +34,18 @@ class LeftWorm implements Shape {
     }
 
     @Override
+    public boolean isValidStepLeft() {
+        return false;
+    }
+
+    @Override
     public List<Integer> stepRight() {
         return null;
+    }
+
+    @Override
+    public boolean isValidStepRight() {
+        return false;
     }
 
     @Override
@@ -44,8 +54,18 @@ class LeftWorm implements Shape {
     }
 
     @Override
+    public boolean isValidStepDown() {
+        return false;
+    }
+
+    @Override
     public List<Integer> rotate() {
         return null;
+    }
+
+    @Override
+    public boolean isValidRotation() {
+        return false;
     }
 
 

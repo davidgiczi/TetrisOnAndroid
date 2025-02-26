@@ -68,23 +68,82 @@ class Square implements Shape {
 
     @Override
     public List<Integer> stepLeft() {
-        return null;
+        if( isValidStepLeft() ){
+            List<Integer> steppedShape = new ArrayList<>();
+            for (Integer shapeCell : square) {
+                steppedShape.add(shapeCell - 1);
+            }
+            List<Integer> deletedShapeCells = new ArrayList<>(square);
+            square = new ArrayList<>(steppedShape);
+            deletedShapeCells.removeAll(steppedShape);
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean isValidStepLeft() {
+        int actualRowIndex = square.get(0) / GameBoard.BOARD_COL;
+        int afterStepRowIndex = (square.get(0) - 1) / GameBoard.BOARD_COL;
+        return 1 <= square.get(0) && actualRowIndex == afterStepRowIndex &&
+                !GameBoard.TETRIS_BOARD.get(square.get(0) - 1) &&
+                !GameBoard.TETRIS_BOARD.get(square.get(2) - 1);
     }
 
     @Override
     public List<Integer> stepRight() {
-        return null;
+        if( isValidStepRight() ){
+            List<Integer> steppedShape = new ArrayList<>();
+            for (Integer shapeCell : square) {
+                steppedShape.add(shapeCell + 1);
+            }
+            List<Integer> deletedShapeCells = new ArrayList<>(square);
+            square = new ArrayList<>(steppedShape);
+            deletedShapeCells.removeAll(steppedShape);
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean isValidStepRight() {
+        int actualRowIndex = square.get(1) / GameBoard.BOARD_COL;
+        int afterStepRowIndex = (square.get(1) + 1) / GameBoard.BOARD_COL;
+        return actualRowIndex == afterStepRowIndex &&
+                !GameBoard.TETRIS_BOARD.get(square.get(1) + 1) &&
+                !GameBoard.TETRIS_BOARD.get(square.get(3) + 1);
     }
 
     @Override
     public List<Integer> stepDown() {
-        return null;
+        if( isValidStepDown() ){
+            List<Integer> steppedShape = new ArrayList<>();
+            for (Integer shapeCell : square) {
+                steppedShape.add(shapeCell + GameBoard.BOARD_COL);
+            }
+            List<Integer> deletedShapeCells = new ArrayList<>(square);
+            square = new ArrayList<>(steppedShape);
+            deletedShapeCells.removeAll(steppedShape);
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public boolean isValidStepDown() {
+        int afterStepRowIndex = (square.get(2) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL;
+        return GameBoard.BOARD_ROW - 1 >= afterStepRowIndex &&
+                !GameBoard.TETRIS_BOARD.get(square.get(2) + GameBoard.BOARD_COL) &&
+                !GameBoard.TETRIS_BOARD.get(square.get(3) + GameBoard.BOARD_COL);
     }
 
     @Override
     public List<Integer> rotate() {
         return new ArrayList<>();
     }
+
+    @Override
+    public boolean isValidRotation() {return true;}
 
 
 }

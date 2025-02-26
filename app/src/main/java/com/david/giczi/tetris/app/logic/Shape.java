@@ -9,8 +9,12 @@ public interface Shape {
     List<Integer> getShape();
     void create();
     List<Integer> stepLeft();
+    boolean isValidStepLeft();
     List<Integer> stepRight();
+    boolean isValidStepRight();
     List<Integer> stepDown();
+    boolean isValidStepDown();
     List<Integer> rotate();
+    boolean isValidRotation();
 
 }

@@ -6,6 +6,7 @@ public interface Shape {
 
     int getLocation();
     int getColorCode();
+    ShapePosition getPosition();
     List<Integer> getShape();
     void create();
     List<Integer> stepLeft();

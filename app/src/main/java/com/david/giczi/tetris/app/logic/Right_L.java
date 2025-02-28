@@ -1,12 +1,21 @@
 package com.david.giczi.tetris.app.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class Right_L implements Shape {
 
     private List<Integer> right_L;
-    private int colorCode;
+    private final int colorCode;
     private int location;
+    private ShapePosition position;
+
+    public Right_L() {
+        this.right_L = new ArrayList<>();
+        create();
+        this.colorCode = (int) (Math.random() * 6);
+        this.position = ShapePosition.NORMAL;
+    }
 
     @Override
     public int getLocation() {
@@ -16,6 +25,11 @@ class Right_L implements Shape {
     @Override
     public int getColorCode() {
         return colorCode;
+    }
+
+    @Override
+    public ShapePosition getPosition() {
+        return position;
     }
 
     @Override

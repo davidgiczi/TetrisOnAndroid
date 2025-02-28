@@ -29,6 +29,11 @@ class Square implements Shape {
     }
 
     @Override
+    public ShapePosition getPosition() {
+        return position;
+    }
+
+    @Override
     public List<Integer> getShape() {
         return square;
     }

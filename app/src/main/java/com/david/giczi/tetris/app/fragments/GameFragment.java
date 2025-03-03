@@ -11,24 +11,30 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
 import com.david.giczi.tetris.app.MainActivity;
 import com.david.giczi.tetris.app.R;
 import com.david.giczi.tetris.app.databinding.FragmentGameBinding;
+import com.david.giczi.tetris.app.db.GamerService;
+import com.david.giczi.tetris.app.logic.TetrisGame;
 
 public class GameFragment extends Fragment {
 
     private FragmentGameBinding binding;
+    private TetrisGame game;
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentGameBinding.inflate(inflater, container, false);
+        this.game = new TetrisGame(binding);
+        String playerName = ((MainActivity) requireActivity()).playerName;
+        game.setPlayer(GamerService.getGamerByName(playerName));
+        game.playGame();
         MainActivity.PAGE_NUMBER_VALUE = 1;
         return binding.getRoot();
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

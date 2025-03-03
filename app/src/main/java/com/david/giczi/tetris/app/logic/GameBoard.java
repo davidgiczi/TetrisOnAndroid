@@ -20,10 +20,17 @@ public class GameBoard {
         }
     }
 
-    public void addShape(Shape shape){
-        for (Integer shapeCell : shape.getShape()) {
+    public void addShape(List<Integer> shapeCells, List<Integer> deletedCells){
+        for (Integer shapeCell : shapeCells) {
             TETRIS_BOARD.set(shapeCell, Boolean.TRUE);
         }
+        if( deletedCells == null ){
+            return;
+        }
+        for (Integer shapeCell : deletedCells) {
+            TETRIS_BOARD.set(shapeCell, Boolean.FALSE);
+        }
+
     }
 
     public void displayTetrisBoard(){
@@ -39,5 +46,7 @@ public class GameBoard {
             System.out.println();
         }
     }
+
+
 
 }

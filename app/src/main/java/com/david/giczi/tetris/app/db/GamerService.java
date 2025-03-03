@@ -33,5 +33,11 @@ public class GamerService {
             GAMERS = gamerDao.getAllGamers();
         });
     }
+
+    public static Gamer getGamerByName(String name){
+        Gamer gamer = null;
+        gamer = GAMERS.stream().filter(g -> g.name.equals(name)).findFirst().orElse(null);
+        return gamer;
+    }
 }
 

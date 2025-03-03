@@ -39,7 +39,7 @@ public class SquareShapeUnitTest {
 
     @Test
     public void testCreateSquareShape() {
-        BOARD.addShape(SQUARE);
+        BOARD.addShape(SQUARE.getShape(), null);
         System.out.println();
         System.out.println("Shape's location: " + SQUARE.getLocation());
         System.out.println();
@@ -94,7 +94,7 @@ public class SquareShapeUnitTest {
             assertEquals(SQUARE.getShape(), temp);
             System.out.println("Step LEFT, deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(SQUARE);
+            BOARD.addShape(SQUARE.getShape(), null);
             BOARD.displayTetrisBoard();
         }
         else {
@@ -102,7 +102,7 @@ public class SquareShapeUnitTest {
             assertEquals(SQUARE.getShape(), temp);
             System.out.println("NO step LEFT, Deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(SQUARE);
+            BOARD.addShape(SQUARE.getShape(), null);
             BOARD.displayTetrisBoard();
         }
     }
@@ -128,7 +128,7 @@ public class SquareShapeUnitTest {
             assertEquals(SQUARE.getShape(), temp);
             System.out.println("Step RIGHT, deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(SQUARE);
+            BOARD.addShape(SQUARE.getShape(), null);
             BOARD.displayTetrisBoard();
         }
         else {
@@ -136,7 +136,7 @@ public class SquareShapeUnitTest {
             assertEquals(SQUARE.getShape(), temp);
             System.out.println("NO step RIGHT, deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(SQUARE);
+            BOARD.addShape(SQUARE.getShape(), null);
             BOARD.displayTetrisBoard();
         }
     }
@@ -161,7 +161,7 @@ public class SquareShapeUnitTest {
             assertEquals(SQUARE.getShape(), temp);
             System.out.println("Step DOWN, deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(SQUARE);
+            BOARD.addShape(SQUARE.getShape(), null);
             BOARD.displayTetrisBoard();
         }
         else {
@@ -169,7 +169,7 @@ public class SquareShapeUnitTest {
             assertEquals(SQUARE.getShape(), temp);
             System.out.println("NO step DOWN, deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(SQUARE);
+            BOARD.addShape(SQUARE.getShape(), null);
             BOARD.displayTetrisBoard();
         }
     }

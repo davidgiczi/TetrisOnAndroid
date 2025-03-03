@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     public static int PAGE_NUMBER_VALUE;
     public Menu menu;
+    public String playerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,14 +162,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempoSpinner.setAdapter(adapter);
         container.findViewById(R.id.start_button).setOnClickListener(s ->{
-            String player = ((TextView) container.findViewById(R.id.gamer_name_input_field)).getText().toString().trim();
-            if( player.isEmpty() ){
+            playerName = ((TextView) container.findViewById(R.id.gamer_name_input_field)).getText().toString().trim();
+            if( playerName.isEmpty() ){
                 playerNameDialog();
                 return;
             }
-            String title =  player + ", " + tempoSpinner.getSelectedItem().toString();
-            if( !GamerService.GAMERS.contains(new Gamer(player)) ){
-                createPlayerDialog(startGameWindow, player, title);
+            String title =  playerName + ", " + tempoSpinner.getSelectedItem().toString();
+            if( !GamerService.GAMERS.contains(new Gamer(playerName)) ){
+                createPlayerDialog(startGameWindow, playerName, title);
                 return;
             }
             startGameProcess(startGameWindow, title);

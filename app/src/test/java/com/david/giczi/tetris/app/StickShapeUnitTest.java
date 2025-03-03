@@ -43,7 +43,7 @@ public class StickShapeUnitTest {
 
     @Test
     public void testCreateStickShape() {
-        BOARD.addShape(STICK);
+        BOARD.addShape(STICK.getShape(), null);
         System.out.println();
         System.out.println("Shape's location: " + STICK.getLocation());
         System.out.println();
@@ -92,7 +92,7 @@ public class StickShapeUnitTest {
             assertEquals(STICK.getShape(), temp);
             System.out.println("Step LEFT, deleted cell: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(STICK);
+            BOARD.addShape(STICK.getShape(), null);
             BOARD.displayTetrisBoard();
         }
         else {
@@ -100,7 +100,7 @@ public class StickShapeUnitTest {
             assertEquals(STICK.getShape(), temp);
             System.out.println("NO step LEFT, Deleted cell: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(STICK);
+            BOARD.addShape(STICK.getShape(), null);
             BOARD.displayTetrisBoard();
         }
     }
@@ -125,7 +125,7 @@ public class StickShapeUnitTest {
             assertEquals(STICK.getShape(), temp);
             System.out.println("Step RIGHT, deleted cell: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(STICK);
+            BOARD.addShape(STICK.getShape(), null);
             BOARD.displayTetrisBoard();
         }
         else {
@@ -133,7 +133,7 @@ public class StickShapeUnitTest {
             assertEquals(STICK.getShape(), temp);
             System.out.println("NO step RIGHT, deleted cell: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(STICK);
+            BOARD.addShape(STICK.getShape(), null);
             BOARD.displayTetrisBoard();
         }
     }
@@ -164,7 +164,7 @@ public class StickShapeUnitTest {
             assertEquals(STICK.getShape(), temp);
             System.out.println("Step DOWN, deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(STICK);
+            BOARD.addShape(STICK.getShape(), null);
             BOARD.displayTetrisBoard();
         }
         else {
@@ -172,7 +172,7 @@ public class StickShapeUnitTest {
             assertEquals(STICK.getShape(), temp);
             System.out.println("NO step DOWN, deleted cells: " + deletedShapeCell);
             BOARD.initBoard();
-            BOARD.addShape(STICK);
+            BOARD.addShape(STICK.getShape(), null);
             BOARD.displayTetrisBoard();
         }
     }
@@ -187,7 +187,6 @@ public class StickShapeUnitTest {
         stick.getShape().set(3, shapeCellValue + 3);
         assertFalse(stick.isValidRotation());
         shapeCellValue = (int) (Math.random() * 16);
-        System.out.println(shapeCellValue);
         stick.getShape().set(0, shapeCellValue * GameBoard.BOARD_COL + 1);
         stick.getShape().set(1, shapeCellValue * GameBoard.BOARD_COL + 2);
         stick.getShape().set(2, shapeCellValue * GameBoard.BOARD_COL + 3);
@@ -216,7 +215,7 @@ public class StickShapeUnitTest {
             System.out.println("NO ROTATION in NORMAL position, deleted cells: " + deletedShapeCell);
         }
         BOARD.initBoard();
-        BOARD.addShape(STICK);
+        BOARD.addShape(STICK.getShape(), null);
         BOARD.displayTetrisBoard();
     }
 
@@ -242,7 +241,7 @@ public class StickShapeUnitTest {
             System.out.println("NO ROTATION in LEFT position, deleted cells: " + deletedShapeCell);
         }
         BOARD.initBoard();
-        BOARD.addShape(STICK);
+        BOARD.addShape(STICK.getShape(), null);
         BOARD.displayTetrisBoard();
     }
 }

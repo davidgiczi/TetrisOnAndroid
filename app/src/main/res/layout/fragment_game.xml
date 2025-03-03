@@ -455,6 +455,7 @@
             app:srcCompat="@drawable/right_arrow" />
 
         <LinearLayout
+            android:id="@+id/first_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -528,6 +529,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/second_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -566,13 +568,13 @@
                 android:id="@+id/field_14"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_15"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_16"
@@ -601,6 +603,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/third_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -639,13 +642,13 @@
                 android:id="@+id/field_24"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_25"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_26"
@@ -674,6 +677,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/forth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -718,7 +722,7 @@
                 android:id="@+id/field_35"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_36"
@@ -747,6 +751,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fifth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -791,7 +796,7 @@
                 android:id="@+id/field_45"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_46"
@@ -820,6 +825,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/sixth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -858,13 +864,13 @@
                 android:id="@+id/field_54"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_55"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_56"
@@ -893,6 +899,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/seventh_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -931,7 +938,7 @@
                 android:id="@+id/field_64"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/green_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_65"
@@ -966,6 +973,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/eight_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1004,13 +1012,13 @@
                 android:id="@+id/field_74"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/green_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_75"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/green_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_76"
@@ -1039,6 +1047,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ninth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1083,7 +1092,7 @@
                 android:id="@+id/field_85"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/green_style" />
+                android:background="@color/black"/>
 
             <TextView
                 android:id="@+id/field_86"
@@ -1112,6 +1121,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1156,7 +1166,7 @@
                 android:id="@+id/field_95"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/blue_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_96"
@@ -1185,6 +1195,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/eleventh_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1223,13 +1234,13 @@
                 android:id="@+id/field_104"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/blue_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_105"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/blue_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_106"
@@ -1258,6 +1269,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/twelfth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1296,7 +1308,7 @@
                 android:id="@+id/field_114"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/blue_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_115"
@@ -1331,6 +1343,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/thirteenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1369,7 +1382,7 @@
                 android:id="@+id/field_124"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/purple_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_125"
@@ -1404,6 +1417,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fourteenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1436,19 +1450,19 @@
                 android:id="@+id/field_133"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/purple_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_134"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/purple_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_135"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/purple_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_136"
@@ -1476,6 +1490,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fifteenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1520,7 +1535,7 @@
                 android:id="@+id/field_145"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/red_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_146"
@@ -1549,6 +1564,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/sixteenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1593,7 +1609,7 @@
                 android:id="@+id/field_155"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/red_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_156"
@@ -1621,6 +1637,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/seventeenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1665,7 +1682,7 @@
                 android:id="@+id/field_165"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/red_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_166"
@@ -1694,6 +1711,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/eighteenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1738,7 +1756,7 @@
                 android:id="@+id/field_175"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/red_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_176"
@@ -1767,6 +1785,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nineteenth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1805,13 +1824,13 @@
                 android:id="@+id/field_184"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_185"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_186"
@@ -1840,6 +1859,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/twentieth_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1878,13 +1898,13 @@
                 android:id="@+id/field_194"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_195"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/orange_style" />
+                android:background="@color/black" />
 
             <TextView
                 android:id="@+id/field_196"

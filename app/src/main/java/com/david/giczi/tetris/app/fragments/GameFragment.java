@@ -38,6 +38,10 @@ public class GameFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        binding.leftButton.setOnClickListener(left -> game.stepLeft());
+        binding.rightButton.setOnClickListener(right -> game.stepRight());
+        binding.downButton.setOnClickListener(down -> game.stepDown());
+        binding.rotationButton.setOnClickListener(rotation -> game.rotation());
         super.onViewCreated(view, savedInstanceState);
     }
 

@@ -1,5 +1,6 @@
 package com.david.giczi.tetris.app.logic;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
@@ -18,6 +19,7 @@ public class TetrisGame {
     private Shape actualShape;
     private Shape nextShape;
     private List<TextView> boardCells;
+    private List<TextView> nextCells;
 
     public TetrisGame(FragmentGameBinding display) {
         this.board = new GameBoard();
@@ -30,9 +32,31 @@ public class TetrisGame {
     }
 
     public void playGame(){
-        actualShape = ShapeFactory.getShape(ShapeType.STICK);
-        for (Integer cellId : actualShape.getShape()) {
-            boardCells.get(cellId).setBackground(getShapeColor(actualShape.getColorCode()));
+        actualShape = ShapeFactory.getShape(((int) (Math.random() * 2)) == 0 ? ShapeType.SQUARE : ShapeType.STICK);
+        nextShape = ShapeFactory.getShape(((int) (Math.random() * 2)) == 0 ? ShapeType.SQUARE : ShapeType.STICK);
+        displayShape(null);
+        displayNextShape();
+    }
+    private void displayShape(List<Integer> deletedCells){
+        for (Integer shapeCellId : actualShape.getShape()) {
+            boardCells.get(shapeCellId).setBackground(getShapeColor(actualShape.getColorCode()));
+        }
+        if( deletedCells == null ){
+            return;
+        }
+        for (Integer deletedCellId : deletedCells) {
+            boardCells.get(deletedCellId).setBackgroundColor(Color.BLACK);
+        }
+    }
+
+    private void displayNextShape(){
+        for (TextView nextCell : nextCells) {
+            nextCell.setBackgroundColor(ContextCompat.getColor(display.getRoot().getContext(), R.color.dark_gray));
+        }
+        for (Integer nextShapeCell : nextShape.getShape()) {
+            int nextCellValueForDisplay = (nextShapeCell - nextShape.getShape().get(0)) / 4 == 0 ?
+                    nextShapeCell - nextShape.getShape().get(0) : nextShapeCell - nextShape.getShape().get(0) - 6 ;
+            nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
         }
     }
 
@@ -53,8 +77,25 @@ public class TetrisGame {
         }
     }
 
+
+    public void stepLeft(){
+        displayShape(actualShape.stepLeft());
+    }
+    public void stepRight(){
+        displayShape(actualShape.stepRight());
+    }
+
+    public void stepDown(){
+        displayShape(actualShape.stepDown());
+    }
+
+    public void rotation(){
+        displayShape(actualShape.rotate());
+    }
+
     private void initBoard(){
         this.boardCells = new ArrayList<>();
+        this.nextCells = new ArrayList<>();
         for (int i = 0; i < display.firstRow.getChildCount(); i++) {
             boardCells.add((TextView) display.firstRow.getChildAt(i));
         }
@@ -114,6 +155,12 @@ public class TetrisGame {
         }
         for (int i = 0; i < display.twentiethRow.getChildCount(); i++) {
             boardCells.add((TextView) display.twentiethRow.getChildAt(i));
+        }
+        for(int i = 0; i < display.nextFirstRow.getChildCount(); i++){
+            nextCells.add((TextView) display.nextFirstRow.getChildAt(i));
+        }
+        for(int i = 0; i < display.nextSecondRow.getChildCount(); i++){
+            nextCells.add((TextView) display.nextSecondRow.getChildAt(i));
         }
     }
 }

@@ -454,6 +454,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/right_arrow" />
 
+
         <LinearLayout
             android:id="@+id/first_row"
             android:layout_width="wrap_content"
@@ -1933,6 +1934,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/next_first_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1953,13 +1955,13 @@
                 android:id="@+id/next_01"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/next_02"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/next_03"
@@ -1969,6 +1971,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/next_second_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="104dp"
@@ -1989,13 +1992,13 @@
                 android:id="@+id/next_11"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/next_12"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/yellow_style" />
+                android:background="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/next_13"

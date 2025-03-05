@@ -3,9 +3,10 @@ package com.david.giczi.tetris.app.logic;
 import java.util.NoSuchElementException;
 
 public class ShapeFactory {
+    public static ShapeType PREVIOUS_TYPE;
 
     public static Shape getShape(ShapeType shapeType){
-
+    PREVIOUS_TYPE = shapeType;
         switch (shapeType) {
             case STICK:
                 return new Stick();

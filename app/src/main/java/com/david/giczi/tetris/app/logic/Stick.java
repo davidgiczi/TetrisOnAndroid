@@ -165,7 +165,7 @@ public class Stick implements Shape {
                 rotatedShape.add(stick.get(0) + 3 * GameBoard.BOARD_COL);
                 stick = new ArrayList<>(rotatedShape);
                 deletedShapeCells.removeAll(rotatedShape);
-                position = ShapePosition.LEFT_ROTATE;
+                position = ShapePosition.LEFT_ROTATED;
             }
             else {
                 rotatedShape.add(stick.get(0));

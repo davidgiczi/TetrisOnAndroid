@@ -225,7 +225,7 @@ public class StickShapeUnitTest {
         System.out.println("Shape's location: " + STICK.getLocation());
         STICK.rotate();
         if( STICK.isValidRotation() ) {
-            if( STICK.getPosition() == ShapePosition.LEFT_ROTATE ) {
+            if( STICK.getPosition() == ShapePosition.LEFT_ROTATED) {
                 temp.add(STICK.getShape().get(0));
                 temp.add(STICK.getShape().get(0) + 1);
                 temp.add(STICK.getShape().get(0) + 2);

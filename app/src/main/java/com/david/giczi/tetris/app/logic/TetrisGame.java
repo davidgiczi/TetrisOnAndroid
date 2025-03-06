@@ -32,10 +32,22 @@ public class TetrisGame {
     }
 
     public void playGame(){
-        actualShape = ShapeFactory.getShape(((int) (Math.random() * 2)) == 0 ? ShapeType.SQUARE : ShapeType.STICK);
-        nextShape = ShapeFactory.getShape(((int) (Math.random() * 2)) == 0 ? ShapeType.SQUARE : ShapeType.STICK);
+        actualShape = ShapeFactory.getShape(getShapeType());
+        nextShape = ShapeFactory.getShape(getShapeType());
         displayShape(null);
         displayNextShape();
+    }
+
+    private ShapeType getShapeType(){
+
+        switch ((int) (Math.random() * 3)){
+            case 1:
+                return ShapeType.STICK;
+            case 2:
+                return ShapeType.T;
+            default:
+                return ShapeType.SQUARE;
+        }
     }
     private void displayShape(List<Integer> deletedCells){
         for (Integer shapeCellId : actualShape.getShape()) {
@@ -49,14 +61,29 @@ public class TetrisGame {
         }
     }
 
-    private void displayNextShape(){
+    private void displayNextShape() {
         for (TextView nextCell : nextCells) {
             nextCell.setBackgroundColor(ContextCompat.getColor(display.getRoot().getContext(), R.color.dark_gray));
         }
-        for (Integer nextShapeCell : nextShape.getShape()) {
-            int nextCellValueForDisplay = (nextShapeCell - nextShape.getShape().get(0)) / 4 == 0 ?
-                    nextShapeCell - nextShape.getShape().get(0) : nextShapeCell - nextShape.getShape().get(0) - 6 ;
-            nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
+        if (nextShape instanceof Stick) {
+            for (Integer nextShapeCell : nextShape.getShape()) {
+                int nextCellValueForDisplay = nextShapeCell - nextShape.getShape().get(0);
+                nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
+            }
+        }
+            else if( nextShape instanceof T) {
+                for (Integer nextShapeCell : nextShape.getShape()) {
+                    int nextCellValueForDisplay = (nextShapeCell - nextShape.getShape().get(0)) / 4 == 0 ?
+                            nextShapeCell - nextShape.getShape().get(0) : nextShapeCell - nextShape.getShape().get(0) - 6;
+                    nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
+                }
+            }
+        else {
+            for (Integer nextShapeCell : nextShape.getShape()) {
+                int nextCellValueForDisplay = (nextShapeCell - nextShape.getShape().get(0)) / 4 == 0 ?
+                        nextShapeCell - nextShape.getShape().get(0) + 1 : nextShapeCell - nextShape.getShape().get(0) - 5;
+                nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
+            }
         }
     }
 

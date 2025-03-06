@@ -8,5 +8,5 @@ public enum ShapeType {
     RIGHT_L,
     LEFT_WORM,
     RIGHT_WORM,
-    T_LETTER
+    T
 }

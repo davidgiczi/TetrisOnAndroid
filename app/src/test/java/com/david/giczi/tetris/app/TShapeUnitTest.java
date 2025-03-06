@@ -1,0 +1,236 @@
+package com.david.giczi.tetris.app;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import com.david.giczi.tetris.app.logic.GameBoard;
+import com.david.giczi.tetris.app.logic.Shape;
+import com.david.giczi.tetris.app.logic.ShapeFactory;
+import com.david.giczi.tetris.app.logic.ShapePosition;
+import com.david.giczi.tetris.app.logic.ShapeType;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class TShapeUnitTest {
+
+    private static Shape T;
+    private static GameBoard BOARD;
+
+    @BeforeClass
+    public static void createBoard(){
+        BOARD = new GameBoard();
+    }
+    @Before
+    public void createShape(){
+        T = ShapeFactory.getShape(ShapeType.T);
+        BOARD.initBoard();
+    }
+
+    @Test
+    public void testShapeColorCode(){
+        int colorCode = T.getColorCode();
+        System.out.println("The Shape's color code: " + colorCode);
+        assertTrue( "The Shape's color code:",
+                colorCode == 0 || colorCode == 1 || colorCode == 2 ||
+                        colorCode == 3 || colorCode == 4 || colorCode == 5);
+    }
+
+    @Test
+    public void testCreateTShape() {
+        BOARD.addShape(T.getShape(), null);
+        System.out.println();
+        System.out.println("Shape's location: " + T.getLocation());
+        System.out.println();
+        BOARD.displayTetrisBoard();
+        switch (T.getLocation()) {
+            case 1:
+                assertEquals(T.getShape(), Arrays.asList(1, 2, 3, 12));
+                break;
+            case 2:
+                assertEquals(T.getShape(), Arrays.asList(2, 3, 4, 13));
+                break;
+            case 3:
+                assertEquals(T.getShape(), Arrays.asList(3, 4, 5, 14));
+                break;
+            case 4:
+                assertEquals(T.getShape(), Arrays.asList(4, 5, 6, 15));
+                break;
+            case 5:
+                assertEquals(T.getShape(), Arrays.asList(5, 6, 7, 16));
+                break;
+            case 6:
+                assertEquals(T.getShape(), Arrays.asList(6, 7, 8, 17));
+                break;
+            case 7:
+                assertEquals(T.getShape(), Arrays.asList(7, 8, 9, 18));
+                break;
+            default:
+                assertEquals(T.getShape(), Arrays.asList(0, 1, 2, 11));
+        }
+    }
+
+    @Test
+    public void testIsValidStepLeft(){
+        Shape shapeT = ShapeFactory.getShape(ShapeType.T);
+        if( shapeT.getPosition() == ShapePosition.NORMAL || shapeT.getPosition() == ShapePosition.LEFT_ROTATED ){
+            shapeT.getShape().set(0, 0);
+            assertFalse(shapeT.isValidStepLeft());
+            int shapeCellValue = (int) (Math.random() * 7 + 1);
+            shapeT.getShape().set(0, shapeCellValue);
+            assertTrue(shapeT.isValidStepLeft());
+        }
+        else if( shapeT.getPosition() == ShapePosition.RIGHT_ROTATED ){
+            shapeT.getShape().set(3, 10);
+            assertFalse(shapeT.isValidStepLeft());
+            int shapeCellValue = (int) (Math.random() * 7 + 11);
+            shapeT.getShape().set(3, shapeCellValue);
+            assertTrue(shapeT.isValidStepLeft());
+        }
+        else if( shapeT.getPosition() == ShapePosition.UPSIDE_DOWN ){
+            shapeT.getShape().set(2, 0);
+            assertFalse(shapeT.isValidStepLeft());
+            int shapeCellValue = (int) (Math.random() * 7 + 1);
+            shapeT.getShape().set(2, shapeCellValue);
+            assertTrue(shapeT.isValidStepLeft());
+        }
+    }
+
+    @Test
+    public void testStepLeft(){
+        List<Integer> temp = new ArrayList<>(T.getShape());
+        System.out.println("Shape's location: " + T.getLocation());
+        if( T.isValidStepLeft() ) {
+            List<Integer> deletedShapeCell = T.stepLeft();
+            temp.replaceAll(cellValue -> cellValue - 1);
+            assertEquals(T.getShape(), temp);
+            System.out.println("Step LEFT, deleted cell: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(T.getShape(), null);
+            BOARD.displayTetrisBoard();
+        }
+        else {
+            List<Integer> deletedShapeCell = T.stepLeft();
+            assertEquals(T.getShape(), temp);
+            System.out.println("NO step LEFT, Deleted cell: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(T.getShape(), null);
+            BOARD.displayTetrisBoard();
+        }
+    }
+
+    @Test
+    public void testIsValidStepRight(){
+        Shape shapeT = ShapeFactory.getShape(ShapeType.T);
+        if( shapeT.getPosition() == ShapePosition.NORMAL ){
+            shapeT.getShape().set(2, 9);
+            assertFalse(shapeT.isValidStepRight());
+            int shapeCellValue = (int) (Math.random() * 7);
+            shapeT.getShape().set(2, shapeCellValue);
+            assertTrue(shapeT.isValidStepRight());
+        }
+        else if( shapeT.getPosition() == ShapePosition.RIGHT_ROTATED || shapeT.getPosition() == ShapePosition.UPSIDE_DOWN ){
+            shapeT.getShape().set(0, 9);
+            assertFalse(shapeT.isValidStepRight());
+            int shapeCellValue = (int) (Math.random() * 9);
+            shapeT.getShape().set(0, shapeCellValue);
+            assertTrue(shapeT.isValidStepRight());
+        }
+        else if( shapeT.getPosition() == ShapePosition.LEFT_ROTATED ){
+            shapeT.getShape().set(3, 19);
+            assertFalse(shapeT.isValidStepRight());
+            int shapeCellValue = (int) (Math.random() * 8 + 11);
+            shapeT.getShape().set(3, shapeCellValue);
+            assertTrue(shapeT.isValidStepRight());
+        }
+    }
+
+    @Test
+    public void testStepRight(){
+        List<Integer> temp = new ArrayList<>(T.getShape());
+        System.out.println("Shape's location: " + T.getLocation());
+        if( T.isValidStepRight() ) {
+            List<Integer> deletedShapeCell = T.stepRight();
+            temp.replaceAll(cellValue -> cellValue + 1);
+            assertEquals(T.getShape(), temp);
+            System.out.println("Step RIGHT, deleted cell: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(T.getShape(), null);
+            BOARD.displayTetrisBoard();
+        }
+        else {
+            List<Integer> deletedShapeCell = T.stepRight();
+            assertEquals(T.getShape(), temp);
+            System.out.println("NO step RIGHT, Deleted cell: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(T.getShape(), null);
+            BOARD.displayTetrisBoard();
+        }
+    }
+
+    @Test
+    public void testIsValidStepDown(){
+        Shape shapeT = ShapeFactory.getShape(ShapeType.T);
+        if( shapeT.getPosition() == ShapePosition.NORMAL ){
+            int shapeCellValue = (int) (Math.random() *  8 + 190);
+            shapeT.getShape().set(3, shapeCellValue);
+            assertFalse(shapeT.isValidStepDown());
+            shapeCellValue = (int) (Math.random() * 8);
+            shapeT.getShape().set(3, shapeCellValue);
+            assertTrue(shapeT.isValidStepDown());
+        }
+        else if( shapeT.getPosition() == ShapePosition.RIGHT_ROTATED ){
+            int shapeCellValue = (int) (Math.random() * 8 + 190);
+            shapeT.getShape().set(2, shapeCellValue);
+            assertFalse(shapeT.isValidStepDown());
+            shapeCellValue = (int) (Math.random() * 8 + 20);
+            shapeT.getShape().set(2, shapeCellValue);
+            assertTrue(shapeT.isValidStepDown());
+        }
+        else if( shapeT.getPosition() == ShapePosition.UPSIDE_DOWN ){
+            int shapeCellValue = (int) (Math.random() * 8 + 190);
+            shapeT.getShape().set(2, shapeCellValue);
+            assertFalse(shapeT.isValidStepDown());
+            shapeCellValue = (int) (Math.random() * 8 + 10);
+            shapeT.getShape().set(2, shapeCellValue);
+            assertTrue(shapeT.isValidStepDown());
+        }
+        else if( shapeT.getPosition() == ShapePosition.LEFT_ROTATED ){
+            int shapeCellValue = (int) (Math.random() * 8 + 190);
+            shapeT.getShape().set(0, shapeCellValue);
+            assertFalse(shapeT.isValidStepDown());
+            shapeCellValue = (int) (Math.random() * 8 + 20);
+            shapeT.getShape().set(0, shapeCellValue);
+            assertTrue(shapeT.isValidStepDown());
+        }
+    }
+
+    @Test
+    public void testStepDown(){
+        List<Integer> temp = new ArrayList<>(T.getShape());
+        System.out.println("Shape's location: " + T.getLocation());
+        if( T.isValidStepDown() ) {
+            List<Integer> deletedShapeCell = T.stepDown();
+            temp.replaceAll(cellValue -> cellValue + GameBoard.BOARD_COL);
+            assertEquals(T.getShape(), temp);
+            System.out.println("Step DOWN, deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(T.getShape(), null);
+            BOARD.displayTetrisBoard();
+        }
+        else {
+            List<Integer> deletedShapeCell = T.stepDown();
+            assertEquals(T.getShape(), temp);
+            System.out.println("NO step DOWN, deleted cells: " + deletedShapeCell);
+            BOARD.initBoard();
+            BOARD.addShape(T.getShape(), null);
+            BOARD.displayTetrisBoard();
+        }
+    }
+}

@@ -202,13 +202,86 @@ class T implements Shape {
 
     @Override
     public List<Integer> rotate() {
-        return null;
+
+        if( isValidRotation() ){
+            List<Integer> rotatedShape = new ArrayList<>();
+            List<Integer> deletedShapeCells = new ArrayList<>(T);
+            if( position == ShapePosition.NORMAL ){
+                rotatedShape.add(T.get(1) - GameBoard.BOARD_COL);
+                rotatedShape.add(T.get(1));
+                rotatedShape.add(T.get(1) + GameBoard.BOARD_COL);
+                rotatedShape.add(T.get(1) - 1);
+                T = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.RIGHT_ROTATED;
+            }
+            else if( position == ShapePosition.RIGHT_ROTATED ){
+                rotatedShape.add(T.get(1) + 1);
+                rotatedShape.add(T.get(1));
+                rotatedShape.add(T.get(1) - 1);
+                rotatedShape.add(T.get(1) - GameBoard.BOARD_COL);
+                T = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.UPSIDE_DOWN;
+            }
+            else if( position == ShapePosition.UPSIDE_DOWN ){
+                rotatedShape.add(T.get(1) + GameBoard.BOARD_COL);
+                rotatedShape.add(T.get(1));
+                rotatedShape.add(T.get(1) - GameBoard.BOARD_COL);
+                rotatedShape.add(T.get(1) + 1);
+                T = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.LEFT_ROTATED;
+            }
+            else if( position == ShapePosition.LEFT_ROTATED ){
+                rotatedShape.add(T.get(1) - 1);
+                rotatedShape.add(T.get(1));
+                rotatedShape.add(T.get(1) + 1);
+                rotatedShape.add(T.get(1) + GameBoard.BOARD_COL);
+                T = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.NORMAL;
+            }
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
     }
 
     @Override
     public boolean isValidRotation() {
-        return false;
+
+        if( position == ShapePosition.NORMAL ){
+          return T.get(1) - GameBoard.BOARD_COL > 0 &&
+                  !GameBoard.TETRIS_BOARD.get(T.get(0) - GameBoard.BOARD_COL) &&
+                  !GameBoard.TETRIS_BOARD.get(T.get(1) - GameBoard.BOARD_COL) &&
+                  !GameBoard.TETRIS_BOARD.get(T.get(2) + GameBoard.BOARD_COL);
+        }
+        else if( position == ShapePosition.RIGHT_ROTATED ){
+            return  GameBoard.BOARD_COL >= T.get(1) + 2 &&
+                    !GameBoard.TETRIS_BOARD.get(T.get(0) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(T.get(1) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(T.get(2) + 1);
+        }
+        else if( position == ShapePosition.UPSIDE_DOWN ){
+               return GameBoard.BOARD_ROW - 1  >= T.get(1) + GameBoard.BOARD_COL &&
+                      !GameBoard.TETRIS_BOARD.get(T.get(0) + GameBoard.BOARD_COL) &&
+                      !GameBoard.TETRIS_BOARD.get(T.get(1) + GameBoard.BOARD_COL) &&
+                      !GameBoard.TETRIS_BOARD.get(T.get(2) - GameBoard.BOARD_COL);
+        }
+        return T.get(1) >= 1 &&
+                !GameBoard.TETRIS_BOARD.get(T.get(0) - 1) &&
+                !GameBoard.TETRIS_BOARD.get(T.get(1) - 1) &&
+                !GameBoard.TETRIS_BOARD.get(T.get(2) + 1);
     }
 
 
+    @Override
+    public String toString() {
+        return "T{" +
+                "T=" + T +
+                ", colorCode=" + colorCode +
+                ", location=" + location +
+                ", position=" + position +
+                '}';
+    }
 }

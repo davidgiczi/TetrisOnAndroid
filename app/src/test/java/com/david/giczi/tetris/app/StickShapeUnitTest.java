@@ -211,7 +211,7 @@ public class StickShapeUnitTest {
         }
         else {
             List<Integer> deletedShapeCell = STICK.rotate();
-            assertEquals(STICK.getShape(), temp);
+            assertEquals(deletedShapeCell, temp);
             System.out.println("NO ROTATION in NORMAL position, deleted cells: " + deletedShapeCell);
         }
         BOARD.initBoard();
@@ -237,7 +237,7 @@ public class StickShapeUnitTest {
         }
         else {
             List<Integer> deletedShapeCell = STICK.rotate();
-            assertEquals(STICK.getShape(), temp);
+            assertEquals(deletedShapeCell, temp);
             System.out.println("NO ROTATION in LEFT position, deleted cells: " + deletedShapeCell);
         }
         BOARD.initBoard();

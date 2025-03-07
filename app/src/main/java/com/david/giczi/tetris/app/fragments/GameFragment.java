@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -29,6 +30,7 @@ public class GameFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentGameBinding.inflate(inflater, container, false);
+        binding.getRoot().getRootView().setNestedScrollingEnabled(false);
         this.game = new TetrisGame(binding);
         String playerName = ((MainActivity) requireActivity()).playerName;
         game.setPlayer(GamerService.getGamerByName(playerName));
@@ -49,7 +51,6 @@ public class GameFragment extends Fragment {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             continueGameDialog();
         }

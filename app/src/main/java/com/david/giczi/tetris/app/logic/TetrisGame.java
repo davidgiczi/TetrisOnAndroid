@@ -65,27 +65,25 @@ public class TetrisGame {
         for (TextView nextCell : nextCells) {
             nextCell.setBackgroundColor(ContextCompat.getColor(display.getRoot().getContext(), R.color.dark_gray));
         }
-        if (nextShape instanceof Stick) {
-            for (Integer nextShapeCell : nextShape.getShape()) {
-                int nextCellValueForDisplay = nextShapeCell - nextShape.getShape().get(0);
-                nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
+        if ( nextShape instanceof Stick ) {
+            nextCells.get(4).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(7).setBackground(getShapeColor(nextShape.getColorCode()));
+        }
+        else if( nextShape instanceof Square ) {
+            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(9).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
+        }
+        else if( nextShape instanceof T) {
+            nextCells.get(2).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
             }
         }
-            else if( nextShape instanceof T) {
-                for (Integer nextShapeCell : nextShape.getShape()) {
-                    int nextCellValueForDisplay = (nextShapeCell - nextShape.getShape().get(0)) / 4 == 0 ?
-                            nextShapeCell - nextShape.getShape().get(0) : nextShapeCell - nextShape.getShape().get(0) - 6;
-                    nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
-                }
-            }
-        else {
-            for (Integer nextShapeCell : nextShape.getShape()) {
-                int nextCellValueForDisplay = (nextShapeCell - nextShape.getShape().get(0)) / 4 == 0 ?
-                        nextShapeCell - nextShape.getShape().get(0) + 1 : nextShapeCell - nextShape.getShape().get(0) - 5;
-                nextCells.get(nextCellValueForDisplay).setBackground(getShapeColor(nextShape.getColorCode()));
-            }
-        }
-    }
 
     private Drawable getShapeColor(int colorCode){
         switch (colorCode){
@@ -188,6 +186,9 @@ public class TetrisGame {
         }
         for(int i = 0; i < display.nextSecondRow.getChildCount(); i++){
             nextCells.add((TextView) display.nextSecondRow.getChildAt(i));
+        }
+        for(int i = 0; i < display.nextThirdRow.getChildCount(); i++){
+            nextCells.add((TextView) display.nextThirdRow.getChildAt(i));
         }
     }
 }

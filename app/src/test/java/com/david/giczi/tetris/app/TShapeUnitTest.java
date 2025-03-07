@@ -233,4 +233,60 @@ public class TShapeUnitTest {
             BOARD.displayTetrisBoard();
         }
     }
+
+    @Test
+    public void testIsValidRotation(){
+        Shape T = ShapeFactory.getShape(ShapeType.T);
+           assertFalse(T.isValidRotation());
+           int shapeCellValue = (int) (Math.random() * 178 + 10);
+           T.getShape().set(0, shapeCellValue);
+           T.getShape().set(1, shapeCellValue + 1);
+           T.getShape().set(2, shapeCellValue + 2);
+           T.getShape().set(3, shapeCellValue + 1 + GameBoard.BOARD_COL);
+           assertTrue(T.isValidRotation());
+    }
+
+    @Test
+    public void testRotationInNormalPosition(){
+        List<Integer> temp = new ArrayList<>();
+        int rowValue = (int) (Math.random() * 19);
+        int colValue = (int) (Math.random() * 8);
+        T.getShape().set(0, rowValue * GameBoard.BOARD_COL + colValue);
+        T.getShape().set(1, rowValue * GameBoard.BOARD_COL + colValue + 1);
+        T.getShape().set(2, rowValue * GameBoard.BOARD_COL + colValue + 2);
+        T.getShape().set(3, rowValue * GameBoard.BOARD_COL + colValue + 1 + GameBoard.BOARD_COL);
+        System.out.println("Shape's location: " + T.getShape().get(0));
+        if( T.isValidRotation() ) {
+            temp.add(T.getShape().get(1) - GameBoard.BOARD_COL);
+            temp.add(T.getShape().get(1));
+            temp.add(T.getShape().get(1) + GameBoard.BOARD_COL);
+            temp.add(T.getShape().get(1) - 1);
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(T.getShape(), temp);
+            System.out.println("ROTATION in NORMAL position, deleted cells: " + deletedShapeCell);
+        }
+        else{
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(deletedShapeCell, temp);
+            System.out.println("NO ROTATION in NORMAL position, deleted cells: " + deletedShapeCell);
+        }
+        BOARD.initBoard();
+        BOARD.addShape(T.getShape(), null);
+        BOARD.displayTetrisBoard();
+    }
+
+    @Test
+    public void testRotationInRightRotatedPosition(){
+
+    }
+
+    @Test
+    public void testRotationInUpsideDownRotatedPosition(){
+
+    }
+    @Test
+    public void testRotationInLeftRotatedPosition(){
+
+    }
+
 }

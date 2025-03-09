@@ -102,8 +102,8 @@ class T implements Shape {
                     !GameBoard.TETRIS_BOARD.get(T.get(3) - 1);
         }
         else if( position == ShapePosition.UPSIDE_DOWN ){
-            actualRowIndex = T.get(2) / GameBoard.BOARD_COL;
-            afterStepRowIndex = (T.get(2) - 1) / GameBoard.BOARD_COL;
+            actualRowIndex = T.get(0) / GameBoard.BOARD_COL;
+            afterStepRowIndex = (T.get(0) - 1) / GameBoard.BOARD_COL;
           return  1 <= T.get(2) && actualRowIndex == afterStepRowIndex &&
                     !GameBoard.TETRIS_BOARD.get(T.get(2) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(T.get(3) - 1);
@@ -130,8 +130,8 @@ class T implements Shape {
 
     @Override
     public boolean isValidStepRight() {
-        int actualRowIndex = T.get(0) / GameBoard.BOARD_COL;
-        int afterStepRowIndex = (T.get(0) + 1) / GameBoard.BOARD_COL;
+        int actualRowIndex = T.get(2) / GameBoard.BOARD_COL;
+        int afterStepRowIndex = (T.get(2) + 1) / GameBoard.BOARD_COL;
         if( position == ShapePosition.RIGHT_ROTATED ){
             return actualRowIndex == afterStepRowIndex &&
                     !GameBoard.TETRIS_BOARD.get(T.get(0) + 1) &&
@@ -216,18 +216,18 @@ class T implements Shape {
                 position = ShapePosition.RIGHT_ROTATED;
             }
             else if( position == ShapePosition.RIGHT_ROTATED ){
-                rotatedShape.add(T.get(1) + 1);
-                rotatedShape.add(T.get(1));
                 rotatedShape.add(T.get(1) - 1);
+                rotatedShape.add(T.get(1));
+                rotatedShape.add(T.get(1) + 1);
                 rotatedShape.add(T.get(1) - GameBoard.BOARD_COL);
                 T = new ArrayList<>(rotatedShape);
                 deletedShapeCells.removeAll(rotatedShape);
                 position = ShapePosition.UPSIDE_DOWN;
             }
             else if( position == ShapePosition.UPSIDE_DOWN ){
-                rotatedShape.add(T.get(1) + GameBoard.BOARD_COL);
-                rotatedShape.add(T.get(1));
                 rotatedShape.add(T.get(1) - GameBoard.BOARD_COL);
+                rotatedShape.add(T.get(1));
+                rotatedShape.add(T.get(1) + GameBoard.BOARD_COL);
                 rotatedShape.add(T.get(1) + 1);
                 T = new ArrayList<>(rotatedShape);
                 deletedShapeCells.removeAll(rotatedShape);
@@ -257,31 +257,26 @@ class T implements Shape {
                   !GameBoard.TETRIS_BOARD.get(T.get(2) + GameBoard.BOARD_COL);
         }
         else if( position == ShapePosition.RIGHT_ROTATED ){
-            return  GameBoard.BOARD_COL >= T.get(1) + 2 &&
+            int beforeRotationIndex = T.get(1) / GameBoard.BOARD_COL;
+            int afterRotationIndex = (T.get(1) + 1) / GameBoard.BOARD_COL;
+            return  beforeRotationIndex == afterRotationIndex &&
                     !GameBoard.TETRIS_BOARD.get(T.get(0) + 1) &&
                     !GameBoard.TETRIS_BOARD.get(T.get(1) + 1) &&
                     !GameBoard.TETRIS_BOARD.get(T.get(2) + 1);
         }
         else if( position == ShapePosition.UPSIDE_DOWN ){
-               return GameBoard.BOARD_ROW - 1  >= T.get(1) + GameBoard.BOARD_COL &&
+               return GameBoard.BOARD_ROW - 1  >= (T.get(1) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL &&
                       !GameBoard.TETRIS_BOARD.get(T.get(0) + GameBoard.BOARD_COL) &&
                       !GameBoard.TETRIS_BOARD.get(T.get(1) + GameBoard.BOARD_COL) &&
                       !GameBoard.TETRIS_BOARD.get(T.get(2) - GameBoard.BOARD_COL);
         }
-        return T.get(1) >= 1 &&
+        int beforeRotationIndex = T.get(1) / GameBoard.BOARD_COL;
+        int afterRotationIndex = (T.get(1) - 1) / GameBoard.BOARD_COL;
+        return beforeRotationIndex == afterRotationIndex &&
                 !GameBoard.TETRIS_BOARD.get(T.get(0) - 1) &&
                 !GameBoard.TETRIS_BOARD.get(T.get(1) - 1) &&
                 !GameBoard.TETRIS_BOARD.get(T.get(2) + 1);
     }
 
 
-    @Override
-    public String toString() {
-        return "T{" +
-                "T=" + T +
-                ", colorCode=" + colorCode +
-                ", location=" + location +
-                ", position=" + position +
-                '}';
-    }
 }

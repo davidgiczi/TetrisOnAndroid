@@ -40,11 +40,19 @@ public class TetrisGame {
 
     private ShapeType getShapeType(){
 
-        switch ((int) (Math.random() * 3)){
+        switch ((int) (Math.random() * 4)){
             case 1:
                 return ShapeType.STICK;
             case 2:
                 return ShapeType.T;
+            case 3:
+                return ShapeType.RIGHT_L;
+            case 4:
+                return ShapeType.LEFT_L;
+            case 5:
+                return ShapeType.RIGHT_WORM;
+            case 6:
+                return ShapeType.LEFT_WORM;
             default:
                 return ShapeType.SQUARE;
         }
@@ -71,19 +79,43 @@ public class TetrisGame {
             nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
             nextCells.get(7).setBackground(getShapeColor(nextShape.getColorCode()));
         }
-        else if( nextShape instanceof Square ) {
-            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
-            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
-            nextCells.get(9).setBackground(getShapeColor(nextShape.getColorCode()));
-            nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
-        }
         else if( nextShape instanceof T) {
             nextCells.get(2).setBackground(getShapeColor(nextShape.getColorCode()));
             nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
             nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
             nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
             }
+        else if ( nextShape instanceof Right_L) {
+            nextCells.get(1).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(9).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
         }
+        else if ( nextShape instanceof Left_L) {
+            nextCells.get(2).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(9).setBackground(getShapeColor(nextShape.getColorCode()));
+        }
+        else if ( nextShape instanceof RightWorm) {
+            nextCells.get(1).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
+        }
+        else if ( nextShape instanceof LeftWorm) {
+            nextCells.get(2).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(9).setBackground(getShapeColor(nextShape.getColorCode()));
+        }
+        else {
+            nextCells.get(5).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(6).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(9).setBackground(getShapeColor(nextShape.getColorCode()));
+            nextCells.get(10).setBackground(getShapeColor(nextShape.getColorCode()));
+        }
+    }
 
     private Drawable getShapeColor(int colorCode){
         switch (colorCode){

@@ -35,6 +35,7 @@ public class HomeFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding.getRoot().getRootView().setNestedScrollingEnabled(false);
         PARAMS = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);

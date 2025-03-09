@@ -8,6 +8,8 @@ public class GameBoard {
     public static List<Boolean> TETRIS_BOARD;
     public static final int BOARD_ROW = 20;
     public static final int BOARD_COL = 10;
+    private final String RED = "\u001B[31m";
+    private final String DEFAULT = "\u001B[0m";
 
     public GameBoard() {
         initBoard();
@@ -37,10 +39,10 @@ public class GameBoard {
         for (int i = 0; i < BOARD_ROW; i++) {
             for (int j = 0; j < BOARD_COL; j++) {
                 if( TETRIS_BOARD.get(i * BOARD_COL + j) ){
-                    System.out.print("1 ");
+                    System.out.print(RED + "1 ");
                 }
                 else{
-                    System.out.print("0 ");
+                    System.out.print(DEFAULT + "0 ");
                 }
             }
             System.out.println();

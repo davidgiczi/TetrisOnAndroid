@@ -28,7 +28,7 @@ public class TShapeUnitTest {
         BOARD = new GameBoard();
     }
     @Before
-    public void createShape(){
+    public void initTest(){
         T = ShapeFactory.getShape(ShapeType.T);
         BOARD.initBoard();
     }
@@ -43,7 +43,7 @@ public class TShapeUnitTest {
     }
 
     @Test
-    public void testCreateTShape() {
+    public void testCreateShape() {
         BOARD.addShape(T.getShape(), null);
         System.out.println();
         System.out.println("Shape's location: " + T.getLocation());
@@ -277,16 +277,94 @@ public class TShapeUnitTest {
 
     @Test
     public void testRotationInRightRotatedPosition(){
-
+        List<Integer> temp = new ArrayList<>();
+        int rowValue = (int) (Math.random() * 19);
+        int colValue = (int) (Math.random() * 8);
+        T.getShape().set(0, rowValue * GameBoard.BOARD_COL + colValue);
+        T.getShape().set(1, rowValue * GameBoard.BOARD_COL + colValue + 1);
+        T.getShape().set(2, rowValue * GameBoard.BOARD_COL + colValue + 2);
+        T.getShape().set(3, rowValue * GameBoard.BOARD_COL + colValue + 1 + GameBoard.BOARD_COL);
+        System.out.println("Shape's location: " + T.getShape().get(0));
+        T.rotate();
+        if( T.isValidRotation() ) {
+            temp.add(T.getShape().get(1) - 1);
+            temp.add(T.getShape().get(1));
+            temp.add(T.getShape().get(1) + 1);
+            temp.add(T.getShape().get(1) - GameBoard.BOARD_COL);
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(T.getShape(), temp);
+            System.out.println("ROTATION in RIGHT_ROTATED position, deleted cells: " + deletedShapeCell);
+        }
+        else{
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(deletedShapeCell, temp);
+            System.out.println("NO ROTATION in RIGHT_ROTATED position, deleted cells: " + deletedShapeCell);
+        }
+        BOARD.initBoard();
+        BOARD.addShape(T.getShape(), null);
+        BOARD.displayTetrisBoard();
     }
 
     @Test
     public void testRotationInUpsideDownRotatedPosition(){
-
+        List<Integer> temp = new ArrayList<>();
+        int rowValue = (int) (Math.random() * 19);
+        int colValue = (int) (Math.random() * 8);
+        T.getShape().set(0, rowValue * GameBoard.BOARD_COL + colValue);
+        T.getShape().set(1, rowValue * GameBoard.BOARD_COL + colValue + 1);
+        T.getShape().set(2, rowValue * GameBoard.BOARD_COL + colValue + 2);
+        T.getShape().set(3, rowValue * GameBoard.BOARD_COL + colValue + 1 + GameBoard.BOARD_COL);
+        System.out.println("Shape's location: " + T.getShape().get(0));
+        T.rotate();
+        T.rotate();
+        if( T.isValidRotation() ) {
+            temp.add(T.getShape().get(1) - GameBoard.BOARD_COL);
+            temp.add(T.getShape().get(1));
+            temp.add(T.getShape().get(1) + GameBoard.BOARD_COL);
+            temp.add(T.getShape().get(1) + 1);
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(T.getShape(), temp);
+            System.out.println("ROTATION in UPSIDE_DOWN position, deleted cells: " + deletedShapeCell);
+        }
+        else{
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(deletedShapeCell, temp);
+            System.out.println("NO ROTATION in UPSIDE_DOWN position, deleted cells: " + deletedShapeCell);
+        }
+        BOARD.initBoard();
+        BOARD.addShape(T.getShape(), null);
+        BOARD.displayTetrisBoard();
     }
     @Test
     public void testRotationInLeftRotatedPosition(){
-
+        List<Integer> temp = new ArrayList<>();
+        int rowValue = (int) (Math.random() * 19);
+        int colValue = (int) (Math.random() * 8);
+        T.getShape().set(0, rowValue * GameBoard.BOARD_COL + colValue);
+        T.getShape().set(1, rowValue * GameBoard.BOARD_COL + colValue + 1);
+        T.getShape().set(2, rowValue * GameBoard.BOARD_COL + colValue + 2);
+        T.getShape().set(3, rowValue * GameBoard.BOARD_COL + colValue + 1 + GameBoard.BOARD_COL);
+        System.out.println("Shape's location: " + T.getShape().get(0));
+        T.rotate();
+        T.rotate();
+        T.rotate();
+        if( T.isValidRotation() ) {
+            temp.add(T.getShape().get(1) - 1);
+            temp.add(T.getShape().get(1));
+            temp.add(T.getShape().get(1) + 1);
+            temp.add(T.getShape().get(1) + GameBoard.BOARD_COL);
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(T.getShape(), temp);
+            System.out.println("ROTATION in LEFT_ROTATED position, deleted cells: " + deletedShapeCell);
+        }
+        else{
+            List<Integer> deletedShapeCell = T.rotate();
+            assertEquals(deletedShapeCell, temp);
+            System.out.println("NO ROTATION in LEFT_ROTATED position, deleted cells: " + deletedShapeCell);
+        }
+        BOARD.initBoard();
+        BOARD.addShape(T.getShape(), null);
+        BOARD.displayTetrisBoard();
     }
 
 }

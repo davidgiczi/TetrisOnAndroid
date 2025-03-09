@@ -23,7 +23,7 @@ public class SquareShapeUnitTest {
         BOARD = new GameBoard();
     }
     @Before
-    public void createShape(){
+    public void initTest(){
         SQUARE = ShapeFactory.getShape(ShapeType.SQUARE);
         BOARD.initBoard();
     }
@@ -38,7 +38,7 @@ public class SquareShapeUnitTest {
     }
 
     @Test
-    public void testCreateSquareShape() {
+    public void testCreateShape() {
         BOARD.addShape(SQUARE.getShape(), null);
         System.out.println();
         System.out.println("Shape's location: " + SQUARE.getLocation());

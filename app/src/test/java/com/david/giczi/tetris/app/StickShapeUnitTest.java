@@ -28,7 +28,7 @@ public class StickShapeUnitTest {
         BOARD = new GameBoard();
     }
     @Before
-    public void createShape(){
+    public void initTest(){
         STICK = ShapeFactory.getShape(ShapeType.STICK);
         BOARD.initBoard();
     }
@@ -42,7 +42,7 @@ public class StickShapeUnitTest {
     }
 
     @Test
-    public void testCreateStickShape() {
+    public void testCreateShape() {
         BOARD.addShape(STICK.getShape(), null);
         System.out.println();
         System.out.println("Shape's location: " + STICK.getLocation());

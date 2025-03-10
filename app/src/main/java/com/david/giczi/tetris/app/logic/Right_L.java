@@ -70,7 +70,18 @@ class Right_L implements Shape {
 
     @Override
     public List<Integer> stepLeft() {
-        return null;
+
+        if( isValidStepLeft() ){
+            List<Integer> steppedShape = new ArrayList<>();
+            for (Integer shapeCell : right_L) {
+                steppedShape.add(shapeCell - 1);
+            }
+            List<Integer> deletedShapeCells = new ArrayList<>(right_L);
+            right_L = new ArrayList<>(steppedShape);
+            deletedShapeCells.removeAll(steppedShape);
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
     }
 
     @Override
@@ -83,9 +94,8 @@ class Right_L implements Shape {
                     !GameBoard.TETRIS_BOARD.get(right_L.get(3) - 1);
         }
         else if( position == ShapePosition.RIGHT_ROTATED ){
-            int actualRowIndex = right_L.get(0) / GameBoard.BOARD_COL;
             int afterStepRowIndex = (right_L.get(0) - 1) / GameBoard.BOARD_COL;
-            return actualRowIndex == afterStepRowIndex &&
+            return  GameBoard.BOARD_COL - 1 >= afterStepRowIndex  &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(0) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(1) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(2) - 1);
@@ -107,32 +117,176 @@ class Right_L implements Shape {
 
     @Override
     public List<Integer> stepRight() {
-        return null;
+        if( isValidStepRight() ){
+            List<Integer> steppedShape = new ArrayList<>();
+            for (Integer shapeCell : right_L) {
+                steppedShape.add(shapeCell + 1);
+            }
+            List<Integer> deletedShapeCells = new ArrayList<>(right_L);
+            right_L = new ArrayList<>(steppedShape);
+            deletedShapeCells.removeAll(steppedShape);
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
     }
 
     @Override
     public boolean isValidStepRight() {
-        return false;
+        if( position == ShapePosition.NORMAL ){
+            int actualRowIndex = right_L.get(3) / GameBoard.BOARD_COL;
+            int afterStepRowIndex = (right_L.get(3) + 1) / GameBoard.BOARD_COL;
+            return actualRowIndex == afterStepRowIndex &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(2) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(3) + 1);
+        }
+        else if( position == ShapePosition.RIGHT_ROTATED ){
+            int afterStepRowIndex = (right_L.get(3) + 1) / GameBoard.BOARD_COL;
+            return GameBoard.BOARD_COL - 1 >= afterStepRowIndex &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(0) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(3) + 1);
+        }
+        else if( position == ShapePosition.UPSIDE_DOWN ){
+            int actualRowIndex = right_L.get(0) / GameBoard.BOARD_COL;
+            int afterStepRowIndex = (right_L.get(0) + 1) / GameBoard.BOARD_COL;
+            return actualRowIndex == afterStepRowIndex &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(0) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(3) + 1);
+        }
+        int actualRowIndex = right_L.get(0) / GameBoard.BOARD_COL;
+        int afterStepRowIndex = (right_L.get(0) + 1) / GameBoard.BOARD_COL;
+        return actualRowIndex == afterStepRowIndex &&
+                !GameBoard.TETRIS_BOARD.get(right_L.get(1) + 1) &&
+                !GameBoard.TETRIS_BOARD.get(right_L.get(2) + 1) &&
+                !GameBoard.TETRIS_BOARD.get(right_L.get(3) + 1);
     }
 
     @Override
     public List<Integer> stepDown() {
-        return null;
+        if( isValidStepDown() ){
+            List<Integer> steppedShape = new ArrayList<>();
+            for (Integer shapeCell : right_L) {
+                steppedShape.add(shapeCell + GameBoard.BOARD_COL);
+            }
+            List<Integer> deletedShapeCells = new ArrayList<>(right_L);
+            right_L = new ArrayList<>(steppedShape);
+            deletedShapeCells.removeAll(steppedShape);
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
     }
 
     @Override
     public boolean isValidStepDown() {
-        return false;
+        if( position == ShapePosition.NORMAL ){
+            int afterStepRowIndex = (right_L.get(0) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL;
+            return  GameBoard.BOARD_ROW - 1 >= afterStepRowIndex  &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(0) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(2) + GameBoard.BOARD_COL);
+        }
+        else if( position == ShapePosition.RIGHT_ROTATED ){
+            int afterStepRowIndex = (right_L.get(3) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL;
+            return GameBoard.BOARD_ROW - 1 >= afterStepRowIndex  &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(2) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(3) + GameBoard.BOARD_COL);
+        }
+        else if( position == ShapePosition.UPSIDE_DOWN ){
+          int afterStepRowIndex = (right_L.get(3) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL;
+            return  GameBoard.BOARD_ROW - 1 >= afterStepRowIndex &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(0) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(3) + GameBoard.BOARD_COL);
+        }
+        int afterStepRowIndex = (right_L.get(0) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL;
+        return GameBoard.BOARD_ROW - 1 >= afterStepRowIndex &&
+                !GameBoard.TETRIS_BOARD.get(right_L.get(0) + GameBoard.BOARD_COL) &&
+                !GameBoard.TETRIS_BOARD.get(right_L.get(3) + GameBoard.BOARD_COL);
     }
 
     @Override
     public List<Integer> rotate() {
-        return null;
+        if( isValidRotation() ){
+            List<Integer> rotatedShape = new ArrayList<>();
+            List<Integer> deletedShapeCells = new ArrayList<>(right_L);
+            if( position == ShapePosition.NORMAL ){
+                rotatedShape.add(right_L.get(1) - GameBoard.BOARD_COL);
+                rotatedShape.add(right_L.get(1));
+                rotatedShape.add(right_L.get(1) + GameBoard.BOARD_COL);
+                rotatedShape.add(right_L.get(1) + GameBoard.BOARD_COL + 1);
+                right_L = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.RIGHT_ROTATED;
+            }
+            else if( position == ShapePosition.RIGHT_ROTATED ){
+                rotatedShape.add(right_L.get(1) + 1);
+                rotatedShape.add(right_L.get(1));
+                rotatedShape.add(right_L.get(1) - 1);
+                rotatedShape.add(right_L.get(1) + GameBoard.BOARD_COL - 1);
+                right_L = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.UPSIDE_DOWN;
+            }
+            else if( position == ShapePosition.UPSIDE_DOWN ){
+                rotatedShape.add(right_L.get(1) + GameBoard.BOARD_COL);
+                rotatedShape.add(right_L.get(1));
+                rotatedShape.add(right_L.get(1) - GameBoard.BOARD_COL);
+                rotatedShape.add(right_L.get(1) - GameBoard.BOARD_COL - 1);
+                right_L = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.LEFT_ROTATED;
+            }
+            else if( position == ShapePosition.LEFT_ROTATED ){
+                rotatedShape.add(right_L.get(1) - 1);
+                rotatedShape.add(right_L.get(1));
+                rotatedShape.add(right_L.get(1) + 1);
+                rotatedShape.add(right_L.get(1) - GameBoard.BOARD_COL + 1);
+                right_L = new ArrayList<>(rotatedShape);
+                deletedShapeCells.removeAll(rotatedShape);
+                position = ShapePosition.NORMAL;
+            }
+            return deletedShapeCells;
+        }
+        return new ArrayList<>();
     }
 
     @Override
     public boolean isValidRotation() {
-        return false;
+        if( position == ShapePosition.NORMAL ){
+            return right_L.get(1) - GameBoard.BOARD_COL > 0 &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(0) - GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) - GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(2) + GameBoard.BOARD_COL);
+        }
+        else if( position == ShapePosition.RIGHT_ROTATED ){
+            int beforeRotationIndex = right_L.get(1) / GameBoard.BOARD_COL;
+            int afterRotationIndex1 = (right_L.get(1) + 1) / GameBoard.BOARD_COL;
+            int afterRotationIndex2 = (right_L.get(1) - 1) / GameBoard.BOARD_COL;
+            return  beforeRotationIndex == afterRotationIndex1 &&
+                    beforeRotationIndex == afterRotationIndex2 &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(0) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) + 1) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) - 1) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(2) - 1);
+        }
+        else if( position == ShapePosition.UPSIDE_DOWN ){
+            return right_L.get(1) - GameBoard.BOARD_COL > 0 &&
+                   GameBoard.BOARD_ROW - 1  >= (right_L.get(1) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(0) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) + GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(1) - GameBoard.BOARD_COL) &&
+                    !GameBoard.TETRIS_BOARD.get(right_L.get(2) - GameBoard.BOARD_COL);
+        }
+        int beforeRotationIndex = right_L.get(1) / GameBoard.BOARD_COL;
+        int afterRotationIndex1 = (right_L.get(1) - 1) / GameBoard.BOARD_COL;
+        int afterRotationIndex2 = (right_L.get(1) + 1) / GameBoard.BOARD_COL;
+        return beforeRotationIndex == afterRotationIndex1 &&
+               beforeRotationIndex == afterRotationIndex2 &&
+               !GameBoard.TETRIS_BOARD.get(right_L.get(0) - 1) &&
+               !GameBoard.TETRIS_BOARD.get(right_L.get(1) - 1) &&
+               !GameBoard.TETRIS_BOARD.get(right_L.get(1) + 1) &&
+               !GameBoard.TETRIS_BOARD.get(right_L.get(2) + 1);
     }
 
 

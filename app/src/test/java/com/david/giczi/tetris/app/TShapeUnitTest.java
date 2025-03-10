@@ -79,27 +79,11 @@ public class TShapeUnitTest {
     @Test
     public void testIsValidStepLeft(){
         Shape shapeT = ShapeFactory.getShape(ShapeType.T);
-        if( shapeT.getPosition() == ShapePosition.NORMAL || shapeT.getPosition() == ShapePosition.LEFT_ROTATED ){
-            shapeT.getShape().set(0, 0);
-            assertFalse(shapeT.isValidStepLeft());
-            int shapeCellValue = (int) (Math.random() * 7 + 1);
-            shapeT.getShape().set(0, shapeCellValue);
-            assertTrue(shapeT.isValidStepLeft());
-        }
-        else if( shapeT.getPosition() == ShapePosition.RIGHT_ROTATED ){
-            shapeT.getShape().set(3, 10);
-            assertFalse(shapeT.isValidStepLeft());
-            int shapeCellValue = (int) (Math.random() * 7 + 11);
-            shapeT.getShape().set(3, shapeCellValue);
-            assertTrue(shapeT.isValidStepLeft());
-        }
-        else if( shapeT.getPosition() == ShapePosition.UPSIDE_DOWN ){
-            shapeT.getShape().set(2, 0);
-            assertFalse(shapeT.isValidStepLeft());
-            int shapeCellValue = (int) (Math.random() * 7 + 1);
-            shapeT.getShape().set(2, shapeCellValue);
-            assertTrue(shapeT.isValidStepLeft());
-        }
+        shapeT.getShape().set(0, 0);
+        assertFalse(shapeT.isValidStepLeft());
+        int shapeCellValue = (int) (Math.random() * 7 + 1);
+        shapeT.getShape().set(0, shapeCellValue);
+        assertTrue(shapeT.isValidStepLeft());
     }
 
     @Test
@@ -128,27 +112,11 @@ public class TShapeUnitTest {
     @Test
     public void testIsValidStepRight(){
         Shape shapeT = ShapeFactory.getShape(ShapeType.T);
-        if( shapeT.getPosition() == ShapePosition.NORMAL ){
             shapeT.getShape().set(2, 9);
             assertFalse(shapeT.isValidStepRight());
             int shapeCellValue = (int) (Math.random() * 7);
             shapeT.getShape().set(2, shapeCellValue);
             assertTrue(shapeT.isValidStepRight());
-        }
-        else if( shapeT.getPosition() == ShapePosition.RIGHT_ROTATED || shapeT.getPosition() == ShapePosition.UPSIDE_DOWN ){
-            shapeT.getShape().set(0, 9);
-            assertFalse(shapeT.isValidStepRight());
-            int shapeCellValue = (int) (Math.random() * 9);
-            shapeT.getShape().set(0, shapeCellValue);
-            assertTrue(shapeT.isValidStepRight());
-        }
-        else if( shapeT.getPosition() == ShapePosition.LEFT_ROTATED ){
-            shapeT.getShape().set(3, 19);
-            assertFalse(shapeT.isValidStepRight());
-            int shapeCellValue = (int) (Math.random() * 8 + 11);
-            shapeT.getShape().set(3, shapeCellValue);
-            assertTrue(shapeT.isValidStepRight());
-        }
     }
 
     @Test
@@ -177,40 +145,13 @@ public class TShapeUnitTest {
     @Test
     public void testIsValidStepDown(){
         Shape shapeT = ShapeFactory.getShape(ShapeType.T);
-        if( shapeT.getPosition() == ShapePosition.NORMAL ){
-            int shapeCellValue = (int) (Math.random() *  8 + 190);
-            shapeT.getShape().set(3, shapeCellValue);
-            assertFalse(shapeT.isValidStepDown());
-            shapeCellValue = (int) (Math.random() * 8);
-            shapeT.getShape().set(3, shapeCellValue);
-            assertTrue(shapeT.isValidStepDown());
-        }
-        else if( shapeT.getPosition() == ShapePosition.RIGHT_ROTATED ){
-            int shapeCellValue = (int) (Math.random() * 8 + 190);
-            shapeT.getShape().set(2, shapeCellValue);
-            assertFalse(shapeT.isValidStepDown());
-            shapeCellValue = (int) (Math.random() * 8 + 20);
-            shapeT.getShape().set(2, shapeCellValue);
-            assertTrue(shapeT.isValidStepDown());
-        }
-        else if( shapeT.getPosition() == ShapePosition.UPSIDE_DOWN ){
-            int shapeCellValue = (int) (Math.random() * 8 + 190);
-            shapeT.getShape().set(2, shapeCellValue);
-            assertFalse(shapeT.isValidStepDown());
-            shapeCellValue = (int) (Math.random() * 8 + 10);
-            shapeT.getShape().set(2, shapeCellValue);
-            assertTrue(shapeT.isValidStepDown());
-        }
-        else if( shapeT.getPosition() == ShapePosition.LEFT_ROTATED ){
-            int shapeCellValue = (int) (Math.random() * 8 + 190);
-            shapeT.getShape().set(0, shapeCellValue);
-            assertFalse(shapeT.isValidStepDown());
-            shapeCellValue = (int) (Math.random() * 8 + 20);
-            shapeT.getShape().set(0, shapeCellValue);
-            assertTrue(shapeT.isValidStepDown());
-        }
+        int shapeCellValue = (int) (Math.random() *  8 + 190);
+        shapeT.getShape().set(3, shapeCellValue);
+        assertFalse(shapeT.isValidStepDown());
+        shapeCellValue = (int) (Math.random() * 8);
+        shapeT.getShape().set(3, shapeCellValue);
+        assertTrue(shapeT.isValidStepDown());
     }
-
     @Test
     public void testStepDown(){
         List<Integer> temp = new ArrayList<>(T.getShape());
@@ -237,13 +178,13 @@ public class TShapeUnitTest {
     @Test
     public void testIsValidRotation(){
         Shape T = ShapeFactory.getShape(ShapeType.T);
-           assertFalse(T.isValidRotation());
-           int shapeCellValue = (int) (Math.random() * 178 + 10);
-           T.getShape().set(0, shapeCellValue);
-           T.getShape().set(1, shapeCellValue + 1);
-           T.getShape().set(2, shapeCellValue + 2);
-           T.getShape().set(3, shapeCellValue + 1 + GameBoard.BOARD_COL);
-           assertTrue(T.isValidRotation());
+        assertFalse(T.isValidRotation());
+        int shapeCellValue = (int) (Math.random() * 178 + 10);
+        T.getShape().set(0, shapeCellValue);
+        T.getShape().set(1, shapeCellValue + 1);
+        T.getShape().set(2, shapeCellValue + 2);
+        T.getShape().set(3, shapeCellValue + 1 + GameBoard.BOARD_COL);
+        assertTrue(T.isValidRotation());
     }
 
     @Test

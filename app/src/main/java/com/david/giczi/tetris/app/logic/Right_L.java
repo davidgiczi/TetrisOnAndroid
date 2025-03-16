@@ -89,13 +89,14 @@ class Right_L implements Shape {
         if( position == ShapePosition.NORMAL ){
             int actualRowIndex = right_L.get(0) / GameBoard.BOARD_COL;
             int afterStepRowIndex = (right_L.get(0) - 1) / GameBoard.BOARD_COL;
-            return actualRowIndex == afterStepRowIndex &&
+            return 1 <= right_L.get(0) && actualRowIndex == afterStepRowIndex &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(0) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(3) - 1);
         }
         else if( position == ShapePosition.RIGHT_ROTATED ){
+            int actualRowIndex = right_L.get(0) / GameBoard.BOARD_COL;
             int afterStepRowIndex = (right_L.get(0) - 1) / GameBoard.BOARD_COL;
-            return  GameBoard.BOARD_COL - 1 >= afterStepRowIndex  &&
+            return 1 <= right_L.get(0) && actualRowIndex == afterStepRowIndex  &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(0) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(1) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(2) - 1);
@@ -103,13 +104,13 @@ class Right_L implements Shape {
         else if( position == ShapePosition.UPSIDE_DOWN ){
             int actualRowIndex = right_L.get(2) / GameBoard.BOARD_COL;
             int afterStepRowIndex = (right_L.get(2) - 1) / GameBoard.BOARD_COL;
-            return actualRowIndex == afterStepRowIndex &&
+            return 1 <= right_L.get(2) && actualRowIndex == afterStepRowIndex &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(2) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(3) - 1);
         }
         int actualRowIndex = right_L.get(3) / GameBoard.BOARD_COL;
         int afterStepRowIndex = (right_L.get(3) - 1) / GameBoard.BOARD_COL;
-        return actualRowIndex == afterStepRowIndex &&
+        return 1 <= right_L.get(3) && actualRowIndex == afterStepRowIndex &&
                 !GameBoard.TETRIS_BOARD.get(right_L.get(0) - 1) &&
                 !GameBoard.TETRIS_BOARD.get(right_L.get(1) - 1) &&
                 !GameBoard.TETRIS_BOARD.get(right_L.get(3) - 1);
@@ -140,8 +141,9 @@ class Right_L implements Shape {
                     !GameBoard.TETRIS_BOARD.get(right_L.get(3) + 1);
         }
         else if( position == ShapePosition.RIGHT_ROTATED ){
+            int actualRowIndex = right_L.get(3) / GameBoard.BOARD_COL;
             int afterStepRowIndex = (right_L.get(3) + 1) / GameBoard.BOARD_COL;
-            return GameBoard.BOARD_COL - 1 >= afterStepRowIndex &&
+            return actualRowIndex == afterStepRowIndex &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(0) + 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(1) + 1) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(3) + 1);
@@ -254,6 +256,7 @@ class Right_L implements Shape {
     public boolean isValidRotation() {
         if( position == ShapePosition.NORMAL ){
             return right_L.get(1) - GameBoard.BOARD_COL > 0 &&
+                    GameBoard.BOARD_ROW - 1 >= (right_L.get(1) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(0) - GameBoard.BOARD_COL) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(1) - GameBoard.BOARD_COL) &&
                     !GameBoard.TETRIS_BOARD.get(right_L.get(1) + GameBoard.BOARD_COL) &&

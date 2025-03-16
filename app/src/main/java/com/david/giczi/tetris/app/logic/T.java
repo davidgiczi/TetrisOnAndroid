@@ -104,7 +104,7 @@ class T implements Shape {
         else if( position == ShapePosition.UPSIDE_DOWN ){
             actualRowIndex = T.get(0) / GameBoard.BOARD_COL;
             afterStepRowIndex = (T.get(0) - 1) / GameBoard.BOARD_COL;
-          return  1 <= T.get(2) && actualRowIndex == afterStepRowIndex &&
+          return  1 <= T.get(0) && actualRowIndex == afterStepRowIndex &&
                     !GameBoard.TETRIS_BOARD.get(T.get(2) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(T.get(3) - 1);
         }

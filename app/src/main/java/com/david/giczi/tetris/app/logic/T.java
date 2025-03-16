@@ -192,8 +192,7 @@ class T implements Shape {
             afterStepRowIndex = (T.get(0) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL;
             return  GameBoard.BOARD_ROW - 1 >= afterStepRowIndex &&
                     !GameBoard.TETRIS_BOARD.get(T.get(0) + GameBoard.BOARD_COL) &&
-                    !GameBoard.TETRIS_BOARD.get(T.get(1) + GameBoard.BOARD_COL) &&
-                    !GameBoard.TETRIS_BOARD.get(T.get(2) + GameBoard.BOARD_COL);
+                    !GameBoard.TETRIS_BOARD.get(T.get(3) + GameBoard.BOARD_COL);
         }
         return GameBoard.BOARD_ROW - 1 >= afterStepRowIndex &&
                 !GameBoard.TETRIS_BOARD.get(T.get(0) + 1) &&
@@ -225,9 +224,9 @@ class T implements Shape {
                 position = ShapePosition.UPSIDE_DOWN;
             }
             else if( position == ShapePosition.UPSIDE_DOWN ){
-                rotatedShape.add(T.get(1) - GameBoard.BOARD_COL);
-                rotatedShape.add(T.get(1));
                 rotatedShape.add(T.get(1) + GameBoard.BOARD_COL);
+                rotatedShape.add(T.get(1));
+                rotatedShape.add(T.get(1) - GameBoard.BOARD_COL);
                 rotatedShape.add(T.get(1) + 1);
                 T = new ArrayList<>(rotatedShape);
                 deletedShapeCells.removeAll(rotatedShape);

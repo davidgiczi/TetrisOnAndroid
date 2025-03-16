@@ -259,9 +259,9 @@ public class TShapeUnitTest {
         T.rotate();
         T.rotate();
         if( T.isValidRotation() ) {
-            temp.add(T.getShape().get(1) - GameBoard.BOARD_COL);
-            temp.add(T.getShape().get(1));
             temp.add(T.getShape().get(1) + GameBoard.BOARD_COL);
+            temp.add(T.getShape().get(1));
+            temp.add(T.getShape().get(1) - GameBoard.BOARD_COL);
             temp.add(T.getShape().get(1) + 1);
             List<Integer> deletedShapeCell = T.rotate();
             assertEquals(T.getShape(), temp);

@@ -111,12 +111,12 @@ public class RightLShapeUnitTest {
 
     @Test
     public void testIsValidStepRight(){
-        Shape shapeT = ShapeFactory.getShape(ShapeType.RIGHT_L);
-        shapeT.getShape().set(3, 9);
-        assertFalse(shapeT.isValidStepRight());
+        Shape rightL = ShapeFactory.getShape(ShapeType.RIGHT_L);
+        rightL.getShape().set(3, 9);
+        assertFalse(rightL.isValidStepRight());
         int shapeCellValue = (int) (Math.random() * 6 + 2);
-        shapeT.getShape().set(3, shapeCellValue);
-        assertTrue(shapeT.isValidStepRight());
+        rightL.getShape().set(3, shapeCellValue);
+        assertTrue(rightL.isValidStepRight());
     }
 
     @Test
@@ -144,13 +144,13 @@ public class RightLShapeUnitTest {
 
     @Test
     public void testIsValidStepDown(){
-        Shape shapeT = ShapeFactory.getShape(ShapeType.RIGHT_L);
+        Shape rightL = ShapeFactory.getShape(ShapeType.RIGHT_L);
         int shapeCellValue = (int) (Math.random() *  8 + 190);
-        shapeT.getShape().set(0, shapeCellValue);
-        assertFalse(shapeT.isValidStepDown());
+        rightL.getShape().set(0, shapeCellValue);
+        assertFalse(rightL.isValidStepDown());
         shapeCellValue = (int) (Math.random() * 8 + 10);
-        shapeT.getShape().set(0, shapeCellValue);
-        assertTrue(shapeT.isValidStepDown());
+        rightL.getShape().set(0, shapeCellValue);
+        assertTrue(rightL.isValidStepDown());
     }
 
     @Test

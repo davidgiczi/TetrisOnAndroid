@@ -40,7 +40,7 @@ public class TetrisGame {
 
     private ShapeType getShapeType(){
 
-        switch ((int) (Math.random() * 4)){
+        switch ((int) (Math.random() * 5)){
             case 1:
                 return ShapeType.STICK;
             case 2:

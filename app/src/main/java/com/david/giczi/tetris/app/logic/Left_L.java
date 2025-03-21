@@ -261,35 +261,32 @@ class Left_L implements Shape {
     public boolean isValidRotation() {
         if( position == ShapePosition.NORMAL ){
             return left_L.get(1) - GameBoard.BOARD_COL > 0 &&
-                    GameBoard.BOARD_ROW - 1 >= (left_L.get(3) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL &&
+                    GameBoard.BOARD_ROW - 1 >= (left_L.get(1) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(0) - GameBoard.BOARD_COL) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(1) - GameBoard.BOARD_COL) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(0) + GameBoard.BOARD_COL) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(1) + GameBoard.BOARD_COL);
         }
         else if( position == ShapePosition.RIGHT_ROTATED ){
-            int afterRotationIndex1 = (left_L.get(3) - 1) / GameBoard.BOARD_COL;
-            int afterRotationIndex2 = (left_L.get(1) + 1) / GameBoard.BOARD_COL;
-            return  afterRotationIndex1 >= 0 &&
-                    afterRotationIndex2 == left_L.get(1) / GameBoard.BOARD_COL &&
+            int beforeRotationIndex = left_L.get(1) / GameBoard.BOARD_COL;
+            int afterRotationIndex = (left_L.get(1) + 1) / GameBoard.BOARD_COL;
+            return beforeRotationIndex == afterRotationIndex &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(0) + 1) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(0) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(1) + 1) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(1) - 1);
         }
         else if( position == ShapePosition.UPSIDE_DOWN ){
-            return left_L.get(2) - 1 > 0 &&
-                    GameBoard.BOARD_ROW - 1  >= (left_L.get(1) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL &&
+            int afterRotationIndex = (left_L.get(1) + GameBoard.BOARD_COL) / GameBoard.BOARD_COL;
+            return GameBoard.BOARD_ROW - 1  >= afterRotationIndex &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(0) + GameBoard.BOARD_COL) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(2) - 1) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(1) + GameBoard.BOARD_COL) &&
                     !GameBoard.TETRIS_BOARD.get(left_L.get(1) - GameBoard.BOARD_COL);
         }
         int beforeRotationIndex = left_L.get(1) / GameBoard.BOARD_COL;
-        int afterRotationIndex1 = (left_L.get(1) - 1) / GameBoard.BOARD_COL;
-        int afterRotationIndex2 = (left_L.get(1) + 1) / GameBoard.BOARD_COL;
-        return beforeRotationIndex == afterRotationIndex1 &&
-                beforeRotationIndex == afterRotationIndex2 &&
+        int afterRotationIndex = (left_L.get(1) - 1) / GameBoard.BOARD_COL;
+        return beforeRotationIndex >= 1 &&  beforeRotationIndex == afterRotationIndex &&
                 !GameBoard.TETRIS_BOARD.get(left_L.get(0) - 1) &&
                 !GameBoard.TETRIS_BOARD.get(left_L.get(1) - 1) &&
                 !GameBoard.TETRIS_BOARD.get(left_L.get(1) + 1) &&

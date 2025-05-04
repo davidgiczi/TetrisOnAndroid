@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 R.array.spinner_items,
                 R.layout.spinner_tempo
         );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.dropdown_item_for_spinner_tempo);
         tempoSpinner.setAdapter(adapter);
         container.findViewById(R.id.start_button).setOnClickListener(s ->{
             playerName = ((TextView) container.findViewById(R.id.gamer_name_input_field)).getText().toString().trim();
